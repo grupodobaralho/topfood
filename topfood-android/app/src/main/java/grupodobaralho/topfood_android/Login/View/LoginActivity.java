@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android;
+package grupodobaralho.topfood_android.Login.View;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import grupodobaralho.topfood_android.R;
+
 /**
  * A login screen that offers login via email/password.
+ * Classe feia com base na: https://github.com/antoniolg/androidmvp/tree/master/app/src/main/java/com/antonioleiva/mvpexample/app/Login
  */
 public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {
 

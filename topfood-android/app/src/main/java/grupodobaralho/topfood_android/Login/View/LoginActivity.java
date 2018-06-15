@@ -3,12 +3,12 @@ package grupodobaralho.topfood_android.Login.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import grupodobaralho.topfood_android.Cadastro.View.CadastroActtiviy;
 import grupodobaralho.topfood_android.Login.Model.LoginInteractorImpl;
 import grupodobaralho.topfood_android.Login.Presenter.LoginPresenter;
 import grupodobaralho.topfood_android.Login.Presenter.LoginPresenterImpl;
@@ -22,7 +22,7 @@ import grupodobaralho.topfood_android.R;
 public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {
 
     private ProgressBar progressBar;
-    private EditText username;
+    private EditText email;
     private EditText password;
     private LoginPresenter presenter;
 
@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         setContentView(R.layout.activity_login);
 
         progressBar = (ProgressBar) findViewById(R.id.progress_login);
-        username = (EditText) findViewById(R.id.input_email);
+        email = (EditText) findViewById(R.id.input_email);
         password = (EditText) findViewById(R.id.input_password);
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_signup).setOnClickListener(this);
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     }
 
     @Override public void setEmailError() {
-        username.setError(getString(R.string.username_error));
+        email.setError(getString(R.string.email_error));
     }
 
     @Override public void setPasswordError() {
@@ -73,10 +73,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         Button btn = (Button) v;
         switch (btn.getId()) {
             case R.id.btn_login:
-                Log.d("MSG:","LOGIN");
+                presenter.validateCredentials(email.getText().toString(), password.getText().toString());
                 break;
             case R.id.btn_signup:
-                Log.d("MSG:","SIGNUP");
+                startActivity(new Intent(this, CadastroActtiviy.class));
+                finish();
                 break;
             default:
                 return;

@@ -12,13 +12,28 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView
+        <TextView
 
-            android:src="@drawable/ic_launcher_background"
             android:layout_width="wrap_content"
-            android:layout_height="72dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:text="@string/cadastro_label"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25dp"/>
+
+        <!-- Nome completo Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_cadastro_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Nome completo" />
+        </android.support.design.widget.TextInputLayout>
 
         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
@@ -26,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_email"
+            <EditText android:id="@+id/input_cadastro_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -39,32 +54,36 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
+            <EditText android:id="@+id/input_cadastro_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:hint="Senha"/>
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
-            android:layout_width="fill_parent"
+        <!-- Confirm Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="12dp"
-            android:padding="12dp"
-            android:text="Login"/>
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_cadastro_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Confirmar Senha"/>
+        </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_signup"
+            android:id="@+id/btn_cadastro_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Cadastre-se"
+            android:text="Cadastrar"
             android:gravity="center"
             android:textSize="16dip" />
 
         <ProgressBar
-            android:id="@+id/progress_login"
+            android:id="@+id/progress_cadastro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

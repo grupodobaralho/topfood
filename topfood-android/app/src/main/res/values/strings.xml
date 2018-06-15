@@ -15,6 +15,9 @@
     </string>
 
     <!--New elements-->
-    <string name="username_error">Username cannot be empty</string>
-    <string name="password_error">Password cannot be empty</string>
+    <string name="email_error">Campo de email não pode ficar vazio</string>
+    <string name="password_error">Campo de senha não pode ficar vazio</string>
+    <string name="cadastro_label">Formulário de Cadastro</string>
+    <string name="nome_completo_error">Campo de nome completo não pode ficar vazio</string>
+    <string name="validate_password_error">Senha não confere</string>
 </resources>

@@ -4,12 +4,12 @@ package grupodobaralho.topfood_android.Login.Model;
 
 public interface LoginInteractor {
 
-    interface OnLoginFinishedLisener {
+    interface OnLoginFinishedListener {
         void onEmailError();
         void onPasswordError();
         void onSuccess();
     }
 
-    void login(String username, String password, OnLoginFinishedLisener listener);
+    void login(String username, String password, OnLoginFinishedListener listener);
 
 }

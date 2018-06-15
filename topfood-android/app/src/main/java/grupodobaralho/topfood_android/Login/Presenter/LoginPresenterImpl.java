@@ -3,10 +3,10 @@ package grupodobaralho.topfood_android.Login.Presenter;
 import grupodobaralho.topfood_android.Login.Model.LoginInteractor;
 import grupodobaralho.topfood_android.Login.View.LoginView;
 
-public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLoginFinishedLisener {
+public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLoginFinishedListener {
 
     private LoginView loginView;
-    private LoginInteractor loginInteractor; // Variavel pela interacao com o banco ---> seria o model
+    private LoginInteractor loginInteractor; 
 
     // Variavel de verificacao singleton
     private static LoginPresenterImpl instance;
@@ -27,9 +27,8 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
 
     @Override
     public void validateCredentials(String email, String password) {
-        if (loginView != null) {
+        if (loginView != null)
             loginView.showProgress();
-        }
 
         loginInteractor.login(email, password, this);
     }
@@ -57,8 +56,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
 
     @Override
     public void onSuccess() {
-        if (loginView != null) {
+        if (loginView != null)
             loginView.navigateToHome();
-        }
     }
 }

@@ -43,8 +43,8 @@ public class CadastroActtiviy extends AppCompatActivity implements CadastroView,
     }
 
     @Override
-    public void validationPasswordError() {
-        confirmPassword.setError(getString(R.string.validate_password_error));
+    public void verifyPasswordError() {
+        confirmPassword.setError(getString(R.string.verify_password_error));
     }
 
     @Override

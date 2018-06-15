@@ -1,5 +1,6 @@
 package grupodobaralho.topfood_android.Login.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -8,18 +9,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import grupodobaralho.topfood_android.Login.Model.LoginInteractorImpl;
+import grupodobaralho.topfood_android.Login.Presenter.LoginPresenter;
+import grupodobaralho.topfood_android.Login.Presenter.LoginPresenterImpl;
+import grupodobaralho.topfood_android.MainActivity;
 import grupodobaralho.topfood_android.R;
 
 /**
  * A login screen that offers login via email/password.
- * Classe feia com base na: https://github.com/antoniolg/androidmvp/tree/master/app/src/main/java/com/antonioleiva/mvpexample/app/Login
+ * Classe feita com base em: https://github.com/antoniolg/androidmvp/tree/master/app/src/main/java/com/antonioleiva/mvpexample/app/Login
  */
 public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {
 
     private ProgressBar progressBar;
     private EditText username;
     private EditText password;
-//    private LoginPresenter presenter;
+    private LoginPresenter presenter;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +37,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         findViewById(R.id.btn_signup).setOnClickListener(this);
 
 
-
-//        presenter = new LoginPresenterImpl(this,new LoginInteractorImpl());
+        // Utiliza singleton
+        presenter = LoginPresenterImpl.getInstance(this,new LoginInteractorImpl());
 
     }
 
@@ -50,12 +55,18 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         progressBar.setVisibility(View.GONE);
     }
 
-    @Override public void setUsernameError() {
+    @Override public void setEmailError() {
         username.setError(getString(R.string.username_error));
     }
 
     @Override public void setPasswordError() {
         password.setError(getString(R.string.password_error));
+    }
+
+    @Override
+    public void navigateToHome() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     @Override public void onClick(View v) {

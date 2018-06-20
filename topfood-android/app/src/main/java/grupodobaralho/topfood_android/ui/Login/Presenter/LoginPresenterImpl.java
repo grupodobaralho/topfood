@@ -1,7 +1,7 @@
-package grupodobaralho.topfood_android.Login.Presenter;
+package grupodobaralho.topfood_android.ui.Login.Presenter;
 
-import grupodobaralho.topfood_android.Login.Model.LoginInteractor;
-import grupodobaralho.topfood_android.Login.View.LoginView;
+import grupodobaralho.topfood_android.ui.Login.Model.LoginInteractor;
+import grupodobaralho.topfood_android.ui.Login.View.LoginView;
 
 public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLoginFinishedListener {
 

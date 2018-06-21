@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.ui.Login.Presenter;
+package grupodobaralho.topfood_android.ui.login.presenter;
 
 /* Interface retirada de https://github.com/antoniolg/androidmvp */
 

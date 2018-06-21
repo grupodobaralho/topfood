@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.ui.Cadastro.View;
+package grupodobaralho.topfood_android.ui.signUp.view;
 
 import android.content.Intent;
 import android.os.Bundle;

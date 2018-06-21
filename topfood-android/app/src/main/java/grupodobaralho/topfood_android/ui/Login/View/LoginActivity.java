@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.ui.Login.View;
+package grupodobaralho.topfood_android.ui.login.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import android.widget.ProgressBar;
 
 import grupodobaralho.topfood_android.MainActivity;
 import grupodobaralho.topfood_android.R;
-import grupodobaralho.topfood_android.ui.Cadastro.View.CadastroActtiviy;
-import grupodobaralho.topfood_android.ui.Login.Model.LoginInteractorImpl;
-import grupodobaralho.topfood_android.ui.Login.Presenter.LoginPresenter;
-import grupodobaralho.topfood_android.ui.Login.Presenter.LoginPresenterImpl;
+import grupodobaralho.topfood_android.ui.signUp.view.CadastroActtiviy;
+import grupodobaralho.topfood_android.ui.login.model.LoginInteractorImpl;
+import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenter;
+import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenterImpl;
 
 /**
  * A login screen that offers login via email/password.

@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.ui.Cadastro.Presenter;
+package grupodobaralho.topfood_android.ui.signUp.presenter;
 
 public interface CadastroPresenter {
 

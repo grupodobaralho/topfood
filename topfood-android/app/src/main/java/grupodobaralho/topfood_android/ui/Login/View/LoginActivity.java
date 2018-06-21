@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.Login.View;
+package grupodobaralho.topfood_android.ui.Login.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import grupodobaralho.topfood_android.Cadastro.View.CadastroActtiviy;
-import grupodobaralho.topfood_android.Login.Model.LoginInteractorImpl;
-import grupodobaralho.topfood_android.Login.Presenter.LoginPresenter;
-import grupodobaralho.topfood_android.Login.Presenter.LoginPresenterImpl;
 import grupodobaralho.topfood_android.MainActivity;
 import grupodobaralho.topfood_android.R;
+import grupodobaralho.topfood_android.ui.Cadastro.View.CadastroActtiviy;
+import grupodobaralho.topfood_android.ui.Login.Model.LoginInteractorImpl;
+import grupodobaralho.topfood_android.ui.Login.Presenter.LoginPresenter;
+import grupodobaralho.topfood_android.ui.Login.Presenter.LoginPresenterImpl;
 
 /**
  * A login screen that offers login via email/password.
@@ -83,6 +83,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
                 return;
         }
     }
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage(teste.toString())
+//                .setCancelable(false)
+//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        dialog.cancel();
+//                    }
+//                });
+//        AlertDialog alert = builder.create();
+//        alert.show();
 
 }
 

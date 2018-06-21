@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.Cadastro.Model;
+package grupodobaralho.topfood_android.ui.Cadastro.Model;
 
 public class CadastroInteractorImpl implements CadastroInteractor {
 

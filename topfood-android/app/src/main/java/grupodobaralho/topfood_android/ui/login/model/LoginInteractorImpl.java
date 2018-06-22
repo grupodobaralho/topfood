@@ -4,7 +4,6 @@ import android.util.Log;
 
 import java.util.List;
 
-import grupodobaralho.topfood_android.data.db.endPoint.UserEP;
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.AuthResponse;
 import grupodobaralho.topfood_android.data.db.model.User;
@@ -17,15 +16,14 @@ import retrofit2.Response;
 public class LoginInteractorImpl implements grupodobaralho.topfood_android.ui.login.model.LoginInteractor {
 
     private List<User> teste;
-    //A retrofit instance that uses the UserEP Interface
-    private UserEP service = RetrofitInstance.getRetrofitInstance().create(UserEP.class);
 
     @Override
     public void login(String username, String password, OnLoginFinishedListener listener) {
 
         AuthRequest authRquest = new AuthRequest(username, password);
 
-        Call<AuthResponse> call = service.authUser(authRquest);
+        //A retrofit instance that uses the UserEP Interface
+        Call<AuthResponse> call = RetrofitInstance.retrofitCreate().authUser(authRquest);
 
         call.enqueue(new Callback<AuthResponse>() {
             @Override

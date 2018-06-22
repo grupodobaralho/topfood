@@ -1,5 +1,6 @@
 package grupodobaralho.topfood_android.data.network;
 
+import grupodobaralho.topfood_android.data.db.endPoint.UserEP;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -20,4 +21,9 @@ public class RetrofitInstance {
         }
         return retrofit;
     }
+
+    public static UserEP retrofitCreate() {
+        return retrofit.create(UserEP.class);
+    }
+
 }

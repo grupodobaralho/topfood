@@ -22,6 +22,9 @@ public interface UserEP {
     @POST("users/login")
     Call<AuthResponse> authUser(@Body AuthRequest request);
 
+//    @POST("users/signup")
+//    Call<A>
+
     // Utilizamos o seguinte header para acessar dados do user logado:
 //    (@Header("Authorization") String accessToken);
 

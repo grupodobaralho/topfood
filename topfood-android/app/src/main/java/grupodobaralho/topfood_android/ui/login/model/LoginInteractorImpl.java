@@ -2,11 +2,8 @@ package grupodobaralho.topfood_android.ui.login.model;
 
 import android.util.Log;
 
-import java.util.List;
-
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.AuthResponse;
-import grupodobaralho.topfood_android.data.db.model.User;
 import grupodobaralho.topfood_android.data.localStorage.UserBusiness;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import retrofit2.Call;
@@ -15,7 +12,7 @@ import retrofit2.Response;
 
 public class LoginInteractorImpl implements grupodobaralho.topfood_android.ui.login.model.LoginInteractor {
 
-    private List<User> teste;
+    //TODO: Fazer tratamento de erro (username e password vazios)
 
     @Override
     public void login(String username, String password, OnLoginFinishedListener listener) {

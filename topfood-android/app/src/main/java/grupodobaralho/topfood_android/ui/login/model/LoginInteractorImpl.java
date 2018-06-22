@@ -8,12 +8,13 @@ import grupodobaralho.topfood_android.data.db.endPoint.UserEP;
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.AuthResponse;
 import grupodobaralho.topfood_android.data.db.model.User;
+import grupodobaralho.topfood_android.data.localStorage.UserBusiness;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginInteractorImpl implements LoginInteractor{
+public class LoginInteractorImpl implements grupodobaralho.topfood_android.ui.login.model.LoginInteractor {
 
     private List<User> teste;
     //A retrofit instance that uses the UserEP Interface
@@ -33,12 +34,9 @@ public class LoginInteractorImpl implements LoginInteractor{
                     Log.d("RESPONDE NULL", "= NULL");
                     return;
                 }
-
                 String token = response.body().getAccess_token();
-
-//                AccessToken accessToken = response.body();
-//                UserBusiness.getInstance().updateAccessToken(accessToken.getValue(), accessToken.getUserId());
-//                Log.d("LOGADO", accessToken.getValue());
+                UserBusiness.getInstance().updateAccessToken(token);
+                Log.d("LOGADO", UserBusiness.getInstance().getAccessToken());
             }
 
             @Override
@@ -50,7 +48,5 @@ public class LoginInteractorImpl implements LoginInteractor{
                 Log.d("Deu RUIMM", "Ruim demais");
             }
         });
-
-
     }
 }

@@ -63,12 +63,6 @@
             android:gravity="center"
             android:textSize="16dip" />
 
-        <ProgressBar
-            android:id="@+id/progress_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:visibility="gone" />
 
     </LinearLayout>
 </ScrollView>

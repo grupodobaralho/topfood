@@ -15,7 +15,7 @@ public class LoginInteractorImpl implements LoginInteractor {
     //TODO: Fazer tratamento de erro (username e password vazios)
 
     @Override
-    public void login(String username, String password, OnLoginFinishedListener listener) {
+    public void login(final String username, final String password, final OnLoginFinishedListener listener) {
 
         AuthRequest authRquest = new AuthRequest(username, password);
 
@@ -32,6 +32,12 @@ public class LoginInteractorImpl implements LoginInteractor {
                 String token = response.body().getAccess_token();
                 UserBusiness.getInstance().updateAccessToken(token);
                 Log.d("LOGADO", UserBusiness.getInstance().getAccessToken());
+
+                if (listener == null)
+                    return;
+                else
+                    listener.onSuccess();
+
             }
 
             @Override
@@ -40,7 +46,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 //                builder.setMessage("Sem conexão com a API.")
 //                        .setPositiveButton("Ok", null);
 //                builder.create().show();
-                Log.d("Deu RUIMM", "Ruim demais");
+                Log.d("Deu RUIMM", "login interactor");
             }
         });
     }

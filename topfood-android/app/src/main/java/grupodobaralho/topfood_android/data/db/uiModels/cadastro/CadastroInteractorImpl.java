@@ -18,14 +18,14 @@ public class CadastroInteractorImpl implements CadastroInteractor {
     private LoginInteractor loginInteractor;
 
     @Override
-    public void cadastro(String username, String password, OnCadastroFinishedListener listener) {
+    public void cadastro(final String username, final String password, final OnCadastroFinishedListener listener) {
         // Implmentar comunicacao com o banco
         // caso nome vazio -> listener.onNomeCompletoError();
         // caso email vazio -> listener.onEmailError();
         // caso password vazio -> listener.onPasswordError();
         // caso tudo correto -> onSuccess();
 
-        final AuthRequest authRquest = new AuthRequest(username, password);
+        AuthRequest authRquest = new AuthRequest(username, password);
 
         //A retrofit instance that uses the UserEP Interface
         Call<SignUpResponse> call = RetrofitInstance.retrofitCreate().signUphUser(authRquest);
@@ -40,10 +40,11 @@ public class CadastroInteractorImpl implements CadastroInteractor {
                 Boolean success = response.body().isSuccess();
 
                 if (success) {
-                    Toast.makeText(TopfoodApplication.getTopfoodApplicationContext(), "Usuario " + authRquest.getUsername() + " cadastrado com sucesso.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(TopfoodApplication.getTopfoodApplicationContext(), "Usuario " + username + " cadastrado com sucesso.", Toast.LENGTH_LONG).show();
                     Log.d("CADASTRO SUCESSO", " ..............................................");
                     loginInteractor = new LoginInteractorImpl();
-                    loginInteractor.login(authRquest.getUsername(), authRquest.getPassword(), null);
+                    loginInteractor.login(username, password, null);
+                    listener.onSoccess();
                 }
             }
 

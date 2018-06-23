@@ -8,6 +8,6 @@ public interface CadastroInteractor {
         void onSoccess();
     }
 
-    void cadastro(String email, String password, OnCadastroFinishedListener listener);
+    void cadastro(final String email, final String password, final OnCadastroFinishedListener listener);
 
 }

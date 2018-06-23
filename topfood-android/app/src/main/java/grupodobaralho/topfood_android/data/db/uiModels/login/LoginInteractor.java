@@ -10,6 +10,6 @@ public interface LoginInteractor {
         void onSuccess();
     }
 
-    void login(String username, String password, OnLoginFinishedListener listener);
+    void login(final String username, final String password, final OnLoginFinishedListener listener);
 
 }

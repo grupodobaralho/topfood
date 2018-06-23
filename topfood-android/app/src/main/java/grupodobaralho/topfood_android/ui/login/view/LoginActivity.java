@@ -1,12 +1,12 @@
 package grupodobaralho.topfood_android.ui.login.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 
 import grupodobaralho.topfood_android.MainActivity;
 import grupodobaralho.topfood_android.R;
@@ -20,7 +20,7 @@ import grupodobaralho.topfood_android.ui.signUp.view.CadastroActtiviy;
  */
 public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {
 
-    private ProgressBar progressBar;
+    private ProgressDialog mProgress;
     private EditText email;
     private EditText password;
     private LoginPresenter presenter;
@@ -29,11 +29,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        progressBar = (ProgressBar) findViewById(R.id.progress_login);
         email = (EditText) findViewById(R.id.input_email);
         password = (EditText) findViewById(R.id.input_password);
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_signup).setOnClickListener(this);
+
+        mProgress = new ProgressDialog(this);
+        mProgress.setTitle("Processando...");
+        mProgress.setMessage("Por favor, espere...");
+        mProgress.setCancelable(false);
+        mProgress.setIndeterminate(true);
 
         presenter = new LoginPresenterImpl(this);
     }
@@ -44,11 +49,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     }
 
     @Override public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
+        mProgress.show();
     }
 
     @Override public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
+        mProgress.dismiss();
     }
 
     @Override public void setUsernameError() {

@@ -46,6 +46,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
     @Override
     public void onSuccess() {
         if (loginView != null)
+            loginView.hideProgress();
             loginView.navigateToHome();
     }
 }

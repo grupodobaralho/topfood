@@ -22,4 +22,5 @@
     <string name="verify_password_error">Senha não confere</string>
     <string name="bem_vindo">Bem Vindo...</string>
     <string name="selecione_um_restaurante">Selecione um restaurante.</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -3,5 +3,5 @@
     <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
-        android:title="Sair" />
+        android:title="@string/logout" />
 </menu>

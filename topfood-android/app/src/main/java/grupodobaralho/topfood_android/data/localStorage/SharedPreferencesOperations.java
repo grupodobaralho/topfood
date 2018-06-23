@@ -16,8 +16,6 @@ public class SharedPreferencesOperations {
 
     public static void saveOnPrefs(String key, String value){
 
-//        Log.d("ERRO..............", TopfoodApplication.getTopfoodApplicationContext().toString());
-
         SharedPreferences settings = TopfoodApplication.getTopfoodApplicationContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(key, value);

@@ -30,9 +30,9 @@ public class UserBusiness {
         return accessToken;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-        SharedPreferencesOperations.saveOnPrefs(SharedPreferencesOperations.ACCESS_TOKEN, accessToken);
+    public void removeAccessToken() {
+        SharedPreferencesOperations.removeFromPrefs(SharedPreferencesOperations.ACCESS_TOKEN);
+        accessToken = null;
     }
 
     public boolean isLogged(){

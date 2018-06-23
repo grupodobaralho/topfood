@@ -1,11 +1,11 @@
 package grupodobaralho.topfood_android.ui.signUp.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 
 import grupodobaralho.topfood_android.MainActivity;
 import grupodobaralho.topfood_android.R;
@@ -14,7 +14,7 @@ import grupodobaralho.topfood_android.ui.signUp.presenter.CadastroPresenterImpl;
 
 public class CadastroActtiviy extends AppCompatActivity implements CadastroView, View.OnClickListener {
 
-    private ProgressBar progressBar;
+    private ProgressDialog mProgress;
     private EditText nomeCompleto;
     private EditText username;
     private EditText password;
@@ -25,15 +25,19 @@ public class CadastroActtiviy extends AppCompatActivity implements CadastroView,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activiy_cadastro);
 
-        progressBar = (ProgressBar) findViewById(R.id.progress_cadastro);
         nomeCompleto = (EditText) findViewById(R.id.input_cadastro_name);
         username = (EditText) findViewById(R.id.input_cadastro_email);
         password = (EditText) findViewById(R.id.input_cadastro_password);
         confirmPassword = (EditText) findViewById(R.id.input_cadastro_confirm_password);
         findViewById(R.id.btn_cadastro_signup).setOnClickListener(this);
 
-        presenter = new CadastroPresenterImpl(this);
+        mProgress = new ProgressDialog(this);
+        mProgress.setTitle("Processando...");
+        mProgress.setMessage("Por favor, espere...");
+        mProgress.setCancelable(false);
+        mProgress.setIndeterminate(true);
 
+        presenter = new CadastroPresenterImpl(this);
     }
 
 
@@ -49,12 +53,12 @@ public class CadastroActtiviy extends AppCompatActivity implements CadastroView,
 
     @Override
     public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
+        mProgress.show();
     }
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
+        mProgress.dismiss();
     }
 
     @Override

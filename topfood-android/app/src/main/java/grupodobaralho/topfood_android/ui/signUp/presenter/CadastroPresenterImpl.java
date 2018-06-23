@@ -60,6 +60,7 @@ public class CadastroPresenterImpl implements CadastroPresenter, CadastroInterac
     @Override
     public void onSoccess() {
         if (cadastroView != null)
+            cadastroView.hideProgress();
             cadastroView.navigateToHome();
     }
 }

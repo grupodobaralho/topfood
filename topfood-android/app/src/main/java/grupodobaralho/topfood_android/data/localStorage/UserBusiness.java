@@ -20,14 +20,19 @@ public class UserBusiness {
 
     public void updateAccessToken(String accessToken) {
         this.accessToken = prefix + accessToken;
+        SharedPreferencesOperations.saveOnPrefs(SharedPreferencesOperations.ACCESS_TOKEN, this.accessToken);
     }
 
     public String getAccessToken() {
+        if (accessToken == null) {
+            accessToken = SharedPreferencesOperations.loadFromPrefs(SharedPreferencesOperations.ACCESS_TOKEN);
+        }
         return accessToken;
     }
 
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
+        SharedPreferencesOperations.saveOnPrefs(SharedPreferencesOperations.ACCESS_TOKEN, accessToken);
     }
 
     public boolean isLogged(){

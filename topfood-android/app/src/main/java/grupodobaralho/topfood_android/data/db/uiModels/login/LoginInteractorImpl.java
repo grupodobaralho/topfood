@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.ui.login.model;
+package grupodobaralho.topfood_android.data.db.uiModels.login;
 
 import android.util.Log;
 
@@ -10,7 +10,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginInteractorImpl implements grupodobaralho.topfood_android.ui.login.model.LoginInteractor {
+public class LoginInteractorImpl implements LoginInteractor {
 
     //TODO: Fazer tratamento de erro (username e password vazios)
 

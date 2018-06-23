@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.ui.signUp.model;
+package grupodobaralho.topfood_android.data.db.uiModels.cadastro;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -7,8 +7,8 @@ import grupodobaralho.topfood_android.TopfoodApplication;
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.SignUpResponse;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
-import grupodobaralho.topfood_android.ui.login.model.LoginInteractor;
-import grupodobaralho.topfood_android.ui.login.model.LoginInteractorImpl;
+import grupodobaralho.topfood_android.data.db.uiModels.login.LoginInteractor;
+import grupodobaralho.topfood_android.data.db.uiModels.login.LoginInteractorImpl;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

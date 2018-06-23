@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.ui.login.model;
+package grupodobaralho.topfood_android.data.db.uiModels.login;
 
 /* Interface retirada de https://github.com/antoniolg/androidmvp */
 

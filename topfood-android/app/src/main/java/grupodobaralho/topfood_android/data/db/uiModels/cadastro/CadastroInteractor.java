@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.ui.signUp.model;
+package grupodobaralho.topfood_android.data.db.uiModels.cadastro;
 
 public interface CadastroInteractor {
 

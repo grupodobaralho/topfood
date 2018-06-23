@@ -2,6 +2,7 @@ package grupodobaralho.topfood_android.data.localStorage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import grupodobaralho.topfood_android.TopfoodApplication;
 
@@ -15,6 +16,8 @@ public class SharedPreferencesOperations {
 //    public static final String USER_ID = "userId";
 
     public static void saveOnPrefs(String key, String value){
+
+        Log.d("ERRO..............", TopfoodApplication.getTopfoodApplicationContext().toString());
 
         SharedPreferences settings = TopfoodApplication.getTopfoodApplicationContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();

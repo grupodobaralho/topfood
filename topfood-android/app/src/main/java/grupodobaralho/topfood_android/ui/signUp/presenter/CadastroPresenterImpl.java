@@ -1,6 +1,7 @@
 package grupodobaralho.topfood_android.ui.signUp.presenter;
 
 import grupodobaralho.topfood_android.ui.signUp.model.CadastroInteractor;
+import grupodobaralho.topfood_android.ui.signUp.model.CadastroInteractorImpl;
 import grupodobaralho.topfood_android.ui.signUp.view.CadastroView;
 
 public class CadastroPresenterImpl implements CadastroPresenter, CadastroInteractor.OnCadastroFinishedListener {
@@ -8,26 +9,19 @@ public class CadastroPresenterImpl implements CadastroPresenter, CadastroInterac
     private CadastroView cadastroView;
     private CadastroInteractor cadastroInteractor;
 
-    private static CadastroPresenterImpl instance;
 
-    private CadastroPresenterImpl(CadastroView cadastroView, CadastroInteractor cadastroInteractor) {
+    public CadastroPresenterImpl(CadastroView cadastroView) {
         this.cadastroView = cadastroView;
-    }
-
-    public static synchronized CadastroPresenterImpl getInstance(CadastroView cadastroView, CadastroInteractor cadastroInteractor) {
-        if (instance == null)
-            instance = new CadastroPresenterImpl(cadastroView, cadastroInteractor);
-
-        return instance;
+        this.cadastroInteractor = new CadastroInteractorImpl();
     }
 
     @Override
-    public void validateSignUp(String nomeCompleto, String email, String password, String confirmPassword) {
+    public void validateSignUp(String email, String password, String confirmPassword) {
         if (cadastroView != null) {
             cadastroView.showProgress();
 
             if (verifyConfirmPasswordError(password, confirmPassword))
-                cadastroInteractor.cadastro(nomeCompleto, email, password, this);
+                cadastroInteractor.cadastro(email, password, this);
         }
     }
 
@@ -48,17 +42,9 @@ public class CadastroPresenterImpl implements CadastroPresenter, CadastroInterac
     }
 
     @Override
-    public void onNomeCompletoError() {
-        if (cadastroView != null) {
-            cadastroView.setNomeCompletoError();
-            cadastroView.hideProgress();
-        }
-    }
-
-    @Override
     public void onEmailError() {
         if (cadastroView != null) {
-            cadastroView.setEmailError();
+            cadastroView.setUsernameError();
             cadastroView.hideProgress();
         }
     }
@@ -70,7 +56,6 @@ public class CadastroPresenterImpl implements CadastroPresenter, CadastroInterac
             cadastroView.hideProgress();
         }
     }
-
 
     @Override
     public void onSoccess() {

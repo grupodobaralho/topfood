@@ -10,10 +10,9 @@ import android.widget.ProgressBar;
 
 import grupodobaralho.topfood_android.MainActivity;
 import grupodobaralho.topfood_android.R;
-import grupodobaralho.topfood_android.ui.signUp.view.CadastroActtiviy;
-import grupodobaralho.topfood_android.ui.login.model.LoginInteractorImpl;
 import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenter;
 import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenterImpl;
+import grupodobaralho.topfood_android.ui.signUp.view.CadastroActtiviy;
 
 /**
  * A login screen that offers login via email/password.
@@ -36,10 +35,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_signup).setOnClickListener(this);
 
-
-        // Utiliza singleton
-        presenter = LoginPresenterImpl.getInstance(this,new LoginInteractorImpl());
-
+        presenter = new LoginPresenterImpl(this);
     }
 
     @Override protected void onDestroy() {
@@ -55,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         progressBar.setVisibility(View.GONE);
     }
 
-    @Override public void setEmailError() {
+    @Override public void setUsernameError() {
         email.setError(getString(R.string.email_error));
     }
 

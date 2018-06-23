@@ -4,6 +4,7 @@ import java.util.List;
 
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.AuthResponse;
+import grupodobaralho.topfood_android.data.db.model.SignUpResponse;
 import grupodobaralho.topfood_android.data.db.model.User;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,8 +23,8 @@ public interface UserEP {
     @POST("users/login")
     Call<AuthResponse> authUser(@Body AuthRequest request);
 
-//    @POST("users/signup")
-//    Call<A>
+    @POST("users/signup")
+    Call<SignUpResponse> signUphUser(@Body AuthRequest request);
 
     // Utilizamos o seguinte header para acessar dados do user logado:
 //    (@Header("Authorization") String accessToken);

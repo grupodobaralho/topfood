@@ -10,9 +10,9 @@ public class RetrofitInstance {
     private static final String BASE_URL = "http://topfood.herokuapp.com/";
 
     /**
-     * Create an instance of Retrofit object
+     * TODO: colar um singleton aqui
      * */
-    public static Retrofit getRetrofitInstance() {
+    private static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new retrofit2.Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -23,7 +23,7 @@ public class RetrofitInstance {
     }
 
     public static UserEP retrofitCreate() {
-        return retrofit.create(UserEP.class);
+        return getRetrofitInstance().create(UserEP.class);
     }
 
 }

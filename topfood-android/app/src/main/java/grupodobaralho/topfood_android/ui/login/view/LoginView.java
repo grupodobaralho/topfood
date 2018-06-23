@@ -7,7 +7,7 @@ public interface LoginView {
 
     void hideProgress();
 
-    void setEmailError();
+    void setUsernameError();
 
     void setPasswordError();
 

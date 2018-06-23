@@ -1,6 +1,7 @@
 package grupodobaralho.topfood_android.ui.login.presenter;
 
 import grupodobaralho.topfood_android.ui.login.model.LoginInteractor;
+import grupodobaralho.topfood_android.ui.login.model.LoginInteractorImpl;
 import grupodobaralho.topfood_android.ui.login.view.LoginView;
 
 public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLoginFinishedListener {
@@ -8,21 +9,9 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
     private LoginView loginView;
     private LoginInteractor loginInteractor; 
 
-    // Variavel de verificacao singleton
-    private static LoginPresenterImpl instance;
-
-    // Utilizacao do padrao singleton
-    private LoginPresenterImpl(LoginView loginView, LoginInteractor loginInteractor) {
+    public LoginPresenterImpl(LoginView loginView) {
         this.loginView = loginView;
-        this.loginInteractor = loginInteractor;
-    }
-
-    // Metodo do padrao singleton getInstance
-    public static synchronized LoginPresenterImpl getInstance(LoginView loginView, LoginInteractor loginInteractor) {
-        if (instance == null)
-            instance = new LoginPresenterImpl(loginView, loginInteractor);
-
-        return instance;
+        this.loginInteractor = new LoginInteractorImpl();
     }
 
     @Override
@@ -41,7 +30,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
     @Override
     public void onEmailError() {
         if (loginView != null) {
-            loginView.setEmailError();
+            loginView.setUsernameError();
             loginView.hideProgress();
         }
     }

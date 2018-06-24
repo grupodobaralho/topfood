@@ -6,6 +6,7 @@ import android.widget.Toast;
 import grupodobaralho.topfood_android.TopfoodApplication;
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.SignUpResponse;
+import grupodobaralho.topfood_android.data.localStorage.UserBusiness;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import grupodobaralho.topfood_android.data.db.uiModels.login.ILoginInteractor;
 import grupodobaralho.topfood_android.data.db.uiModels.login.LoginInteractor;
@@ -44,8 +45,17 @@ public class CadastroInteractor implements ICadastroInteractor {
                     Log.d("CADASTRO SUCESSO", " ..............................................");
                     loginInteractor = new LoginInteractor();
                     loginInteractor.login(username, password, null);
-                    listener.onSoccess();
                 }
+
+                // Espera o loggar para realizar a transicao.
+                if (!UserBusiness.getInstance().isLogged()) {
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                listener.onSoccess();
             }
 
             @Override

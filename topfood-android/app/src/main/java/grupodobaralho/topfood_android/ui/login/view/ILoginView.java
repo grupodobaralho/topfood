@@ -11,5 +11,7 @@ public interface ILoginView {
 
     void setPasswordError();
 
+    void setApiError();
+
     void navigateToHome();
 }

@@ -5,6 +5,8 @@ public interface ICadastroInteractor {
     interface OnCadastroFinishedListener {
         void onEmailError();
         void onPasswordError();
+        void onUsernameOrPasswordAlreadyRegistered();
+        void onApiError();
         void onSoccess();
     }
 

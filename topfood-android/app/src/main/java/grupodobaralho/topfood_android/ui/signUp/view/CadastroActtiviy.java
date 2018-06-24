@@ -3,14 +3,15 @@ package grupodobaralho.topfood_android.ui.signUp.view;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
 import grupodobaralho.topfood_android.MainActivity;
 import grupodobaralho.topfood_android.R;
-import grupodobaralho.topfood_android.ui.signUp.presenter.ICadastroPresenter;
 import grupodobaralho.topfood_android.ui.signUp.presenter.CadastroPresenter;
+import grupodobaralho.topfood_android.ui.signUp.presenter.ICadastroPresenter;
 
 public class CadastroActtiviy extends AppCompatActivity implements ICadastroView, View.OnClickListener {
 
@@ -52,6 +53,14 @@ public class CadastroActtiviy extends AppCompatActivity implements ICadastroView
     }
 
     @Override
+    public void setUsernameOrPasswordAlreadyRegistered() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Username já registrado ou senha inválida.")
+                .setPositiveButton("Ok", null);
+        builder.create().show();
+    }
+
+    @Override
     public void showProgress() {
         mProgress.show();
     }
@@ -69,6 +78,14 @@ public class CadastroActtiviy extends AppCompatActivity implements ICadastroView
     @Override
     public void setPasswordError() {
         password.setError(getString(R.string.password_error));
+    }
+
+    @Override
+    public void setApiError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Sem conexão com a API.")
+                .setPositiveButton("Ok", null);
+        builder.create().show();
     }
 
     @Override

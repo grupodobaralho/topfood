@@ -6,10 +6,10 @@ import android.widget.Toast;
 import grupodobaralho.topfood_android.TopfoodApplication;
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.SignUpResponse;
-import grupodobaralho.topfood_android.data.localStorage.UserBusiness;
-import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import grupodobaralho.topfood_android.data.db.uiModels.login.ILoginInteractor;
 import grupodobaralho.topfood_android.data.db.uiModels.login.LoginInteractor;
+import grupodobaralho.topfood_android.data.network.RetrofitInstance;
+import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,6 +26,16 @@ public class CadastroInteractor implements ICadastroInteractor {
         // caso password vazio -> listener.onPasswordError();
         // caso tudo correto -> onSuccess();
 
+        if(username == null || username.isEmpty()) {
+            listener.onEmailError();
+            return;
+        }
+
+        if(password == null || password.isEmpty()) {
+            listener.onPasswordError();
+            return;
+        }
+
         AuthRequest authRquest = new AuthRequest(username, password);
 
         //A retrofit instance that uses the API_EndPoint Interface
@@ -35,7 +45,7 @@ public class CadastroInteractor implements ICadastroInteractor {
             @Override
             public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
                 if (response.errorBody() != null) {
-                    Log.d("RESPONDE NULL", "= NULL");
+                    listener.onUsernameOrPasswordAlreadyRegistered();
                     return;
                 }
                 Boolean success = response.body().isSuccess();
@@ -56,15 +66,12 @@ public class CadastroInteractor implements ICadastroInteractor {
                     }
                 }
                 listener.onSoccess();
+                return;
             }
 
             @Override
             public void onFailure(Call<SignUpResponse> call, Throwable t) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                builder.setMessage("Sem conexão com a API.")
-//                        .setPositiveButton("Ok", null);
-//                builder.create().show();
-                Log.d("Deu RUIMM", "Ruim demais");
+                listener.onApiError();
             }
         });
     }

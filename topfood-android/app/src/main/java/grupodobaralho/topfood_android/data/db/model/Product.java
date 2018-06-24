@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 class Product {
 
-    @SerializedName("id")
+    @SerializedName("_id")
     private String id;
     @SerializedName("restaurant")
     private Restaurant restaurant;

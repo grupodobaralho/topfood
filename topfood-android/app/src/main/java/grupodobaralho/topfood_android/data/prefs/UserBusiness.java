@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.data.localStorage;
+package grupodobaralho.topfood_android.data.prefs;
 
 public class UserBusiness {
 

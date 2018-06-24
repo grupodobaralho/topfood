@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android.data.localStorage;
+package grupodobaralho.topfood_android.data.prefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;

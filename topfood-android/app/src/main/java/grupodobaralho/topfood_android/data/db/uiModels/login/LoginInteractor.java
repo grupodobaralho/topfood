@@ -4,7 +4,7 @@ import android.util.Log;
 
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.AuthResponse;
-import grupodobaralho.topfood_android.data.localStorage.UserBusiness;
+import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,7 +19,7 @@ public class LoginInteractor implements ILoginInteractor {
 
         AuthRequest authRquest = new AuthRequest(username, password);
 
-        //A retrofit instance that uses the UserEP Interface
+        //A retrofit instance that uses the API_EndPoint Interface
         Call<AuthResponse> call = RetrofitInstance.retrofitCreate().authUser(authRquest);
 
         call.enqueue(new Callback<AuthResponse>() {

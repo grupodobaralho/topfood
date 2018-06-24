@@ -12,7 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 //https://medium.com/cr8resume/make-your-hand-dirty-with-retrofit-2-a-type-safe-http-client-for-android-and-java-c546f88b3a51
-public interface UserEP {
+public interface API_EndPoint {
     @GET("?/?/")
     Call<User> getUserData();
 

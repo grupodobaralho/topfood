@@ -27,7 +27,7 @@ public class CadastroInteractor implements ICadastroInteractor {
 
         AuthRequest authRquest = new AuthRequest(username, password);
 
-        //A retrofit instance that uses the UserEP Interface
+        //A retrofit instance that uses the API_EndPoint Interface
         Call<SignUpResponse> call = RetrofitInstance.retrofitCreate().signUphUser(authRquest);
 
         call.enqueue(new Callback<SignUpResponse>() {

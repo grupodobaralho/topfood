@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import grupodobaralho.topfood_android.data.localStorage.UserBusiness;
+import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import grupodobaralho.topfood_android.ui.login.view.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {

@@ -19,6 +19,7 @@ android {
 }
 
 // Retrofit com Android MVP:
+// https://github.com/MindorksOpenSource/android-mvp-architecture
 // https://medium.com/cr8resume/make-your-hand-dirty-with-retrofit-2-a-type-safe-http-client-for-android-and-java-c546f88b3a51
 // https://medium.com/cr8resume/working-with-mvp-and-retrofit-2-in-android-b771b8369ec0
 

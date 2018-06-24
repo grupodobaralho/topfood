@@ -2,7 +2,7 @@ package grupodobaralho.topfood_android.ui.login.view;
 
 /* Interface retirada de https://github.com/antoniolg/androidmvp */
 
-public interface LoginView {
+public interface ILoginView {
     void showProgress();
 
     void hideProgress();

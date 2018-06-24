@@ -10,20 +10,20 @@ import android.widget.EditText;
 
 import grupodobaralho.topfood_android.MainActivity;
 import grupodobaralho.topfood_android.R;
+import grupodobaralho.topfood_android.ui.login.presenter.ILoginPresenter;
 import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenter;
-import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenterImpl;
 import grupodobaralho.topfood_android.ui.signUp.view.CadastroActtiviy;
 
 /**
  * A login screen that offers login via email/password.
  * Classe feita com base em: https://github.com/antoniolg/androidmvp/tree/master/app/src/main/java/com/antonioleiva/mvpexample/app/Login
  */
-public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
 
     private ProgressDialog mProgress;
     private EditText email;
     private EditText password;
-    private LoginPresenter presenter;
+    private ILoginPresenter presenter;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         mProgress.setCancelable(false);
         mProgress.setIndeterminate(true);
 
-        presenter = new LoginPresenterImpl(this);
+        presenter = new LoginPresenter(this);
     }
 
     @Override protected void onDestroy() {

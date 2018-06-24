@@ -1,8 +1,8 @@
 package grupodobaralho.topfood_android.ui.signUp.view;
 
-import grupodobaralho.topfood_android.ui.login.view.LoginView;
+import grupodobaralho.topfood_android.ui.login.view.ILoginView;
 
-public interface CadastroView extends LoginView{
+public interface ICadastroView extends ILoginView {
 
     void setNomeCompletoError();
     void verifyPasswordError();

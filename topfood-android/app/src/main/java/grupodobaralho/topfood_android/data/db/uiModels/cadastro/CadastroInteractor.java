@@ -65,7 +65,7 @@ public class CadastroInteractor implements ICadastroInteractor {
                         e.printStackTrace();
                     }
                 }
-                listener.onSoccess();
+                listener.onSuccess();
                 return;
             }
 

@@ -44,9 +44,26 @@ public class LoginPresenter implements ILoginPresenter, ILoginInteractor.OnLogin
     }
 
     @Override
+    public void onInvalidUsernameOrPassword() {
+        if (loginView != null) {
+            loginView.setResponseError();
+            loginView.hideProgress();
+        }
+    }
+
+    @Override
+    public void onApiError() {
+        if (loginView != null) {
+            loginView.hideProgress();
+            loginView.setApiError();
+        }
+    }
+
+    @Override
     public void onSuccess() {
-        if (loginView != null)
+        if (loginView != null) {
             loginView.hideProgress();
             loginView.navigateToHome();
+        }
     }
 }

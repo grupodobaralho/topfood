@@ -53,14 +53,6 @@ public class CadastroActtiviy extends AppCompatActivity implements ICadastroView
     }
 
     @Override
-    public void setUsernameOrPasswordAlreadyRegistered() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Username já registrado ou senha inválida.")
-                .setPositiveButton("Ok", null);
-        builder.create().show();
-    }
-
-    @Override
     public void showProgress() {
         mProgress.show();
     }
@@ -78,6 +70,14 @@ public class CadastroActtiviy extends AppCompatActivity implements ICadastroView
     @Override
     public void setPasswordError() {
         password.setError(getString(R.string.password_error));
+    }
+
+    @Override
+    public void setResponseError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Username já registrado ou senha inválida.")
+                .setPositiveButton("Ok", null);
+        builder.create().show();
     }
 
     @Override

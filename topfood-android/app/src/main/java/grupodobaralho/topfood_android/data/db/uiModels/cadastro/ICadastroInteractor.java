@@ -7,7 +7,7 @@ public interface ICadastroInteractor {
         void onPasswordError();
         void onUsernameOrPasswordAlreadyRegistered();
         void onApiError();
-        void onSoccess();
+        void onSuccess();
     }
 
     void cadastro(final String email, final String password, final OnCadastroFinishedListener listener);

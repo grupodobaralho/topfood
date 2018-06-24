@@ -66,6 +66,14 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     }
 
     @Override
+    public void setResponseError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Usuário não encontrado ou senha incorreta")
+                .setPositiveButton("Ok", null);
+        builder.create().show();
+    }
+
+    @Override
     public void setApiError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Sem conexão com a API.")

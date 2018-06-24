@@ -7,6 +7,8 @@ public interface ILoginInteractor {
     interface OnLoginFinishedListener {
         void onEmailError();
         void onPasswordError();
+        void onInvalidUsernameOrPassword();
+        void onApiError();
         void onSuccess();
     }
 

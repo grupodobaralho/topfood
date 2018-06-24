@@ -12,10 +12,18 @@ import retrofit2.Response;
 
 public class LoginInteractor implements ILoginInteractor {
 
-    //TODO: Fazer tratamento de erro (username e password vazios)
-
     @Override
     public void login(final String username, final String password, final OnLoginFinishedListener listener) {
+
+        if(username == null || username.isEmpty()) {
+            listener.onEmailError();
+            return;
+        }
+
+        if(password == null || password.isEmpty()) {
+            listener.onPasswordError();
+            return;
+        }
 
         AuthRequest authRquest = new AuthRequest(username, password);
 
@@ -26,7 +34,7 @@ public class LoginInteractor implements ILoginInteractor {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.errorBody() != null) {
-                    Log.d("RESPONDE NULL", "= NULL");
+                    listener.onInvalidUsernameOrPassword();
                     return;
                 }
                 String token = response.body().getAccess_token();
@@ -42,11 +50,7 @@ public class LoginInteractor implements ILoginInteractor {
 
             @Override
             public void onFailure(Call<AuthResponse> call, Throwable t) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                builder.setMessage("Sem conexão com a API.")
-//                        .setPositiveButton("Ok", null);
-//                builder.create().show();
-                Log.d("Deu RUIMM", "login interactor");
+                listener.onApiError();
             }
         });
     }

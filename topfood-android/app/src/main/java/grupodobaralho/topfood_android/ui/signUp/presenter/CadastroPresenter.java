@@ -60,7 +60,7 @@ public class CadastroPresenter implements ICadastroPresenter, ICadastroInteracto
     @Override
     public void onUsernameOrPasswordAlreadyRegistered() {
         if (cadastroView != null) {
-            cadastroView.setUsernameOrPasswordAlreadyRegistered();
+            cadastroView.setResponseError();
             cadastroView.hideProgress();
         }
     }
@@ -74,7 +74,7 @@ public class CadastroPresenter implements ICadastroPresenter, ICadastroInteracto
     }
 
     @Override
-    public void onSoccess() {
+    public void onSuccess() {
         if (cadastroView != null)
             cadastroView.hideProgress();
             cadastroView.navigateToHome();

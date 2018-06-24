@@ -6,5 +6,4 @@ public interface ICadastroView extends ILoginView {
 
     void setNomeCompletoError();
     void verifyPasswordError();
-    void setUsernameOrPasswordAlreadyRegistered();
 }

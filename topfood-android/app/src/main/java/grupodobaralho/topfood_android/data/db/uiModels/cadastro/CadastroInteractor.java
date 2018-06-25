@@ -20,11 +20,6 @@ public class CadastroInteractor implements ICadastroInteractor {
 
     @Override
     public void cadastro(final String username, final String password, final OnCadastroFinishedListener listener) {
-        // Implmentar comunicacao com o banco
-        // caso nome vazio -> listener.onNomeCompletoError();
-        // caso email vazio -> listener.onEmailError();
-        // caso password vazio -> listener.onPasswordError();
-        // caso tudo correto -> onSuccess();
 
         if(username == null || username.isEmpty()) {
             listener.onEmailError();
@@ -44,7 +39,7 @@ public class CadastroInteractor implements ICadastroInteractor {
         call.enqueue(new Callback<SignUpResponse>() {
             @Override
             public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
-                if (response.errorBody() != null) {
+                if (response.code() != 200) {
                     listener.onUsernameOrPasswordAlreadyRegistered();
                     return;
                 }

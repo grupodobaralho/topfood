@@ -28,7 +28,6 @@ public class RestaurantsListInteractor implements IRestaurantsListInteractor {
                     return;
                 }
                 restaurants = response.body();
-
                 listener.onSuccess();
                 return;
             }

@@ -7,10 +7,12 @@ import java.util.List;
 import grupodobaralho.topfood_android.data.db.model.Restaurant;
 import grupodobaralho.topfood_android.data.db.uiModels.restaurantsList.IRestaurantsListInteractor;
 import grupodobaralho.topfood_android.data.db.uiModels.restaurantsList.RestaurantsListInteractor;
+import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import grupodobaralho.topfood_android.ui.restaurantList.view.IRestaurantsListView;
 
 public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRestaurantsListPresenter.OnRestaurantListFinishedListener {
 
+    private UserBusiness userBusiness = UserBusiness.getInstance();
     private List<Restaurant> restaurants;
     private IRestaurantsListInteractor interactor;
     private IRestaurantsListView view;
@@ -50,6 +52,7 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
         return restaurants;
     }
 
+
     @Override
     public void onApiError() {
         hideProgressBar();
@@ -61,5 +64,16 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
         hideProgressBar();
         restaurants = interactor.getRestaurants();
         view.showRestaurants();
+    }
+
+    @Override
+    public boolean hasUserLogged() {
+        return userBusiness.isLogged();
+    }
+
+    @Override
+    public void makeLogout() {
+        userBusiness.removeAccessToken();
+        view.showToast("Logout realizado com sucesso.");
     }
 }

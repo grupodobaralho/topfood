@@ -13,15 +13,11 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import grupodobaralho.topfood_android.R;
-import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import grupodobaralho.topfood_android.ui.login.view.LoginActivity;
 import grupodobaralho.topfood_android.ui.restaurantList.presenter.IRestaurantsListPresenter;
 import grupodobaralho.topfood_android.ui.restaurantList.presenter.RestaurantsListPresenter;
 
 public class RestaurantsListView extends AppCompatActivity implements IRestaurantsListView, SearchView.OnQueryTextListener{
-
-    // TODO: remover parte logica da da activity > isso inclui o UserBusiness
-    final UserBusiness userBusiness = UserBusiness.getInstance();
 
     private RestaurantsListAdapter adapter;
     private static IRestaurantsListPresenter presenter;
@@ -87,7 +83,7 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_logout, menu);
 
-        if(!userBusiness.isLogged()) {
+        if(!presenter.hasUserLogged()) {
             menu.findItem(R.id.action_logout).setTitle("Fazer Login");
         }
         return super.onCreateOptionsMenu(menu);
@@ -99,11 +95,10 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
 
         if (itemId == R.id.action_logout) {
 
-            if(!userBusiness.isLogged()) {
+            if(!presenter.hasUserLogged()) {
                 startActivity(new Intent(this, LoginActivity.class));
             } else {
-                userBusiness.removeAccessToken();
-                Toast.makeText(this, "Logout realizado com sucesso.", Toast.LENGTH_LONG).show();
+                presenter.makeLogout();
                 startActivity(new Intent(this, RestaurantsListView.class));
                 finish();
             }

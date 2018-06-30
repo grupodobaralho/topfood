@@ -25,4 +25,8 @@ public interface IRestaurantsListPresenter {
     void hideProgressBar();
 
     List<Restaurant> getRestaurants();
+
+    boolean hasUserLogged();
+
+    void makeLogout();
 }

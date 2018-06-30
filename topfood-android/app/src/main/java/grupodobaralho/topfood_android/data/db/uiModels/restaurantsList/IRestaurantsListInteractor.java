@@ -3,19 +3,14 @@ package grupodobaralho.topfood_android.data.db.uiModels.restaurantsList;
 import java.util.List;
 
 import grupodobaralho.topfood_android.data.db.model.Restaurant;
+import grupodobaralho.topfood_android.ui.restaurantList.presenter.IRestaurantsListPresenter;
 
 public interface IRestaurantsListInteractor {
 
-    interface OnListRestaurantsFinishedListener {
-        void onEmailError();
-        void onPasswordError();
-        void onInvalidUsernameOrPassword();
-        void onApiError();
-        void onSuccess();
-    }
+    void listAllRestaurants(IRestaurantsListPresenter.OnRestaurantListFinishedListener listener);
 
-    void listAllRestaurants();
     void chooseRestaurant(String idRestaurant);
+
     List<Restaurant> getRestaurants();
 
 }

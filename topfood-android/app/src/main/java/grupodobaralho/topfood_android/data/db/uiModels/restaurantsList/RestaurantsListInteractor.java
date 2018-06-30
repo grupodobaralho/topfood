@@ -2,37 +2,35 @@ package grupodobaralho.topfood_android.data.db.uiModels.restaurantsList;
 
 import android.util.Log;
 
-import java.io.IOException;
 import java.util.List;
 
 import grupodobaralho.topfood_android.data.db.model.Restaurant;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
+import grupodobaralho.topfood_android.ui.restaurantList.presenter.IRestaurantsListPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RestaurantsListInteractor implements IRestaurantsListInteractor {
 
-    List<Restaurant> restaurants;
+    private List<Restaurant> restaurants;
 
     @Override
-    public List<Restaurant> listAllRestaurants() {
+    public void listAllRestaurants(final IRestaurantsListPresenter.OnRestaurantListFinishedListener listener) {
         //A retrofit instance that uses the API_EndPoint Interface
         Call<List<Restaurant>> call = RetrofitInstance.retrofitCreate().getRestaurants();
 
         call.enqueue(new Callback<List<Restaurant>>() {
             @Override
             public void onResponse(Call<List<Restaurant>> call, Response<List<Restaurant>> response) {
-                if (response.body() != null) {
-                    restaurants = response.body();
-                    Log.d("My error", restaurants.toString());
-                } else {
-                    try {
-                        Log.e("Restaurants List", response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                if (response.code() != 200) {
+                    listener.onApiError();
+                    return;
                 }
+                restaurants = response.body();
+
+                listener.onSuccess();
+                return;
             }
 
             @Override
@@ -40,11 +38,15 @@ public class RestaurantsListInteractor implements IRestaurantsListInteractor {
                 Log.e("Restaurants List", t.getLocalizedMessage(), t);
             }
         });
-        return restaurants;
     }
 
     @Override
     public void chooseRestaurant(String idRestaurant) {
 
+    }
+
+    @Override
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
     }
 }

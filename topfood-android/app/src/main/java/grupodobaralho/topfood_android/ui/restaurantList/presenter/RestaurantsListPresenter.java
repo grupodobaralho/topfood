@@ -10,7 +10,7 @@ import grupodobaralho.topfood_android.data.db.uiModels.restaurantsList.IRestaura
 import grupodobaralho.topfood_android.data.db.uiModels.restaurantsList.RestaurantsListInteractor;
 import grupodobaralho.topfood_android.ui.restaurantList.view.IRestaurantsListView;
 
-public class RestaurantsListPresenter implements IRestaurantsListPresenter{
+public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRestaurantsListPresenter.OnRestaurantListFinishedListener {
 
     private List<Restaurant> restaurants;
     private IRestaurantsListInteractor interactor;
@@ -27,8 +27,7 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter{
 
     @Override
     public void listAllRestaurants() {
-        interactor.listAllRestaurants();
-        restaurants = null;
+        interactor.listAllRestaurants(this);
     }
 
     @Override
@@ -43,13 +42,18 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter{
     }
 
     @Override
-    public void showToast(String mensagem) {
-        view.showToast(mensagem);
-    }
-
-    @Override
     public List<Restaurant> getRestaurants() {
         return restaurants;
     }
 
+    @Override
+    public void onApiError() {
+        view.showToast("Ocorreu algum erro no banco de dados.");
+    }
+
+    @Override
+    public void onSuccess() {
+        restaurants = interactor.getRestaurants();
+        view.showRestaurants();
+    }
 }

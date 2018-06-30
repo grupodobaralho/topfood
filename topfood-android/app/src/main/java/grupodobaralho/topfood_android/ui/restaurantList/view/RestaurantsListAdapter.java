@@ -56,7 +56,7 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
         }
 
         private void setDados(Restaurant restaurant){
-            tvName.setText("Jorge");
+            tvName.setText(restaurant.getName());
         }
 
         @Override

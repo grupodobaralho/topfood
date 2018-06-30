@@ -9,15 +9,18 @@ import grupodobaralho.topfood_android.ui.restaurantList.view.IRestaurantsListVie
 
 public interface IRestaurantsListPresenter {
 
-    void setView( IRestaurantsListView view );
+    interface OnRestaurantListFinishedListener {
+        void onApiError();
+        void onSuccess();
+    }
+
+    void setView(IRestaurantsListView view);
 
     void listAllRestaurants();
 
     Context getContext();
 
     void showProgressBar(boolean status);
-
-    void showToast( String mensagem );
 
     List<Restaurant> getRestaurants();
 }

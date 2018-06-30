@@ -1,18 +1,18 @@
 package grupodobaralho.topfood_android.ui.signUp.presenter;
 
-import grupodobaralho.topfood_android.data.db.uiModels.cadastro.ICadastroInteractor;
-import grupodobaralho.topfood_android.data.db.uiModels.cadastro.CadastroInteractor;
-import grupodobaralho.topfood_android.ui.signUp.view.ICadastroView;
+import grupodobaralho.topfood_android.data.db.uiModels.signUp.ISignUpInteractor;
+import grupodobaralho.topfood_android.data.db.uiModels.signUp.SignUpInteractor;
+import grupodobaralho.topfood_android.ui.signUp.view.ISignUpView;
 
-public class CadastroPresenter implements ICadastroPresenter, ICadastroInteractor.OnCadastroFinishedListener {
+public class SignUpPresenter implements ISignUpPresenter, ISignUpPresenter.OnCadastroFinishedListener {
 
-    private ICadastroView cadastroView;
-    private ICadastroInteractor cadastroInteractor;
+    private ISignUpView cadastroView;
+    private ISignUpInteractor cadastroInteractor;
 
 
-    public CadastroPresenter(ICadastroView cadastroView) {
+    public SignUpPresenter(ISignUpView cadastroView) {
         this.cadastroView = cadastroView;
-        this.cadastroInteractor = new CadastroInteractor();
+        this.cadastroInteractor = new SignUpInteractor();
     }
 
     @Override

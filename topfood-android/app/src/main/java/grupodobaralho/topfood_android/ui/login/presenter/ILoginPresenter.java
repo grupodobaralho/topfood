@@ -4,6 +4,14 @@ package grupodobaralho.topfood_android.ui.login.presenter;
 
 public interface ILoginPresenter {
 
+    interface OnLoginFinishedListener {
+        void onEmailError();
+        void onPasswordError();
+        void onInvalidUsernameOrPassword();
+        void onApiError();
+        void onSuccess();
+    }
+
     void validateCredentials(String username, String password);
     void onDestroy();
 

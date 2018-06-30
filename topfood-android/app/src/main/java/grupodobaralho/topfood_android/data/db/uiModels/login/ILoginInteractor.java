@@ -2,16 +2,10 @@ package grupodobaralho.topfood_android.data.db.uiModels.login;
 
 /* Interface retirada de https://github.com/antoniolg/androidmvp */
 
+import grupodobaralho.topfood_android.ui.login.presenter.ILoginPresenter;
+
 public interface ILoginInteractor {
 
-    interface OnLoginFinishedListener {
-        void onEmailError();
-        void onPasswordError();
-        void onInvalidUsernameOrPassword();
-        void onApiError();
-        void onSuccess();
-    }
-
-    void login(final String username, final String password, final OnLoginFinishedListener listener);
+    void login(final String username, final String password, final ILoginPresenter.OnLoginFinishedListener listener);
 
 }

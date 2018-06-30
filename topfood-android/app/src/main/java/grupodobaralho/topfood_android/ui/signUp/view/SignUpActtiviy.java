@@ -10,17 +10,17 @@ import android.widget.EditText;
 
 import grupodobaralho.topfood_android.R;
 import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
-import grupodobaralho.topfood_android.ui.signUp.presenter.CadastroPresenter;
-import grupodobaralho.topfood_android.ui.signUp.presenter.ICadastroPresenter;
+import grupodobaralho.topfood_android.ui.signUp.presenter.SignUpPresenter;
+import grupodobaralho.topfood_android.ui.signUp.presenter.ISignUpPresenter;
 
-public class CadastroActtiviy extends AppCompatActivity implements ICadastroView, View.OnClickListener {
+public class SignUpActtiviy extends AppCompatActivity implements ISignUpView, View.OnClickListener {
 
     private ProgressDialog mProgress;
     private EditText nomeCompleto;
     private EditText username;
     private EditText password;
     private EditText confirmPassword;
-    private ICadastroPresenter presenter;
+    private ISignUpPresenter presenter;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class CadastroActtiviy extends AppCompatActivity implements ICadastroView
         mProgress.setCancelable(false);
         mProgress.setIndeterminate(true);
 
-        presenter = new CadastroPresenter(this);
+        presenter = new SignUpPresenter(this);
     }
 
 

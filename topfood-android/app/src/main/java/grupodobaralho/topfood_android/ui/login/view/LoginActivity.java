@@ -13,7 +13,7 @@ import grupodobaralho.topfood_android.R;
 import grupodobaralho.topfood_android.ui.login.presenter.ILoginPresenter;
 import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenter;
 import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
-import grupodobaralho.topfood_android.ui.signUp.view.CadastroActtiviy;
+import grupodobaralho.topfood_android.ui.signUp.view.SignUpActtiviy;
 
 /**
  * A login screen that offers login via email/password.
@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
                 presenter.validateCredentials(email.getText().toString(), password.getText().toString());
                 break;
             case R.id.btn_signup:
-                startActivity(new Intent(this, CadastroActtiviy.class));
+                startActivity(new Intent(this, SignUpActtiviy.class));
                 finish();
                 break;
             default:

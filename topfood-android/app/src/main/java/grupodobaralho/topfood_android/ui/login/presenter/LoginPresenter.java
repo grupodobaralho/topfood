@@ -4,7 +4,7 @@ import grupodobaralho.topfood_android.data.db.uiModels.login.ILoginInteractor;
 import grupodobaralho.topfood_android.data.db.uiModels.login.LoginInteractor;
 import grupodobaralho.topfood_android.ui.login.view.ILoginView;
 
-public class LoginPresenter implements ILoginPresenter, ILoginInteractor.OnLoginFinishedListener {
+public class LoginPresenter implements ILoginPresenter, ILoginPresenter.OnLoginFinishedListener {
 
     private ILoginView loginView;
     private ILoginInteractor loginInteractor;

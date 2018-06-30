@@ -4,6 +4,7 @@ import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.AuthResponse;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import grupodobaralho.topfood_android.data.prefs.UserBusiness;
+import grupodobaralho.topfood_android.ui.login.presenter.ILoginPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -11,7 +12,7 @@ import retrofit2.Response;
 public class LoginInteractor implements ILoginInteractor {
 
     @Override
-    public void login(final String username, final String password, final OnLoginFinishedListener listener) {
+    public void login(final String username, final String password, final ILoginPresenter.OnLoginFinishedListener listener) {
 
         if(username == null || username.isEmpty()) {
             listener.onEmailError();

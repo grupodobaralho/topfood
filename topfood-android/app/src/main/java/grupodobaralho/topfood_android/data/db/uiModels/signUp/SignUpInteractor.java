@@ -1,6 +1,5 @@
-package grupodobaralho.topfood_android.data.db.uiModels.cadastro;
+package grupodobaralho.topfood_android.data.db.uiModels.signUp;
 
-import android.util.Log;
 import android.widget.Toast;
 
 import grupodobaralho.topfood_android.TopfoodApplication;
@@ -10,16 +9,17 @@ import grupodobaralho.topfood_android.data.db.uiModels.login.ILoginInteractor;
 import grupodobaralho.topfood_android.data.db.uiModels.login.LoginInteractor;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import grupodobaralho.topfood_android.data.prefs.UserBusiness;
+import grupodobaralho.topfood_android.ui.signUp.presenter.ISignUpPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CadastroInteractor implements ICadastroInteractor {
+public class SignUpInteractor implements ISignUpInteractor {
 
     private ILoginInteractor loginInteractor;
 
     @Override
-    public void cadastro(final String username, final String password, final OnCadastroFinishedListener listener) {
+    public void cadastro(final String username, final String password, final ISignUpPresenter.OnCadastroFinishedListener listener) {
 
         if(username == null || username.isEmpty()) {
             listener.onEmailError();
@@ -47,7 +47,6 @@ public class CadastroInteractor implements ICadastroInteractor {
 
                 if (success) {
                     Toast.makeText(TopfoodApplication.getTopfoodApplicationContext(), "Usuario " + username + " cadastrado com sucesso.", Toast.LENGTH_LONG).show();
-                    Log.d("CADASTRO SUCESSO", " ..............................................");
                     loginInteractor = new LoginInteractor();
                     loginInteractor.login(username, password, null);
                 }

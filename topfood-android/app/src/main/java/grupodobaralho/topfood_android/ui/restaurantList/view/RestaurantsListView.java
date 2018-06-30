@@ -8,10 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import grupodobaralho.topfood_android.R;
+import grupodobaralho.topfood_android.data.db.uiModels.restaurantsList.RestaurantsListInteractor;
 import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import grupodobaralho.topfood_android.ui.login.view.LoginActivity;
 import grupodobaralho.topfood_android.ui.restaurantList.presenter.IRestaurantsListPresenter;
@@ -33,11 +36,22 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
         SearchView searchView = (SearchView) findViewById(R.id.activity_catalog_search);
         searchView.setOnQueryTextListener(this);
 
-        if(presenter == null){
-            presenter = new RestaurantsListPresenter();
-        }
-        presenter.setView(this);
-        presenter.listAllRestaurants();
+//        if(presenter == null){
+//            presenter = new RestaurantsListPresenter();
+//        }
+//        presenter.setView(this);
+//        presenter.listAllRestaurants();
+
+        //Botao para teste
+        final Button button = findViewById(R.id.button_id);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                RestaurantsListInteractor interactor = new RestaurantsListInteractor();
+                interactor.listAllRestaurants();
+                Toast.makeText(RestaurantsListView.this, "Funciona", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -50,8 +64,8 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL);
         rvRestaurants.setLayoutManager(layoutManager);
 
-        adapter = new RestaurantsListAdapter(this, presenter.getRestaurants());
-        rvRestaurants.setAdapter(adapter);
+        //adapter = new RestaurantsListAdapter(this, presenter.getRestaurants());
+        //rvRestaurants.setAdapter(adapter);
     }
 
     @Override

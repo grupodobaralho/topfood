@@ -38,16 +38,6 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
     }
 
     @Override
-    public void showProgressBar() {
-        view.showProgressBar();
-    }
-
-    @Override
-    public void hideProgressBar() {
-        view.hideProgressBar();
-    }
-
-    @Override
     public List<Restaurant> getRestaurants() {
         return restaurants;
     }
@@ -75,5 +65,13 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
     public void makeLogout() {
         userBusiness.removeAccessToken();
         view.showToast("Logout realizado com sucesso.");
+    }
+
+    public void showProgressBar() {
+        view.showProgressBar();
+    }
+
+    public void hideProgressBar() {
+        view.hideProgressBar();
     }
 }

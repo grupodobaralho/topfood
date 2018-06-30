@@ -20,10 +20,6 @@ public interface IRestaurantsListPresenter {
 
     Context getContext();
 
-    void showProgressBar();
-
-    void hideProgressBar();
-
     List<Restaurant> getRestaurants();
 
     boolean hasUserLogged();

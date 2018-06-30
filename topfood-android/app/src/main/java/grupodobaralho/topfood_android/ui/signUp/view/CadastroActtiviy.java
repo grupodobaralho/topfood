@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
-import grupodobaralho.topfood_android.MainActivity;
 import grupodobaralho.topfood_android.R;
+import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
 import grupodobaralho.topfood_android.ui.signUp.presenter.CadastroPresenter;
 import grupodobaralho.topfood_android.ui.signUp.presenter.ICadastroPresenter;
 
@@ -90,7 +90,7 @@ public class CadastroActtiviy extends AppCompatActivity implements ICadastroView
 
     @Override
     public void navigateToHome() {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, RestaurantsListView.class));
         finish();
     }
 

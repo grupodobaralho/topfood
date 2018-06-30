@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import grupodobaralho.topfood_android.MainActivity;
 import grupodobaralho.topfood_android.R;
 import grupodobaralho.topfood_android.ui.login.presenter.ILoginPresenter;
 import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenter;
+import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
 import grupodobaralho.topfood_android.ui.signUp.view.CadastroActtiviy;
 
 /**
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 
     @Override
     public void navigateToHome() {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, RestaurantsListView.class));
         finish();
     }
 

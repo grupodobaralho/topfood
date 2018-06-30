@@ -5,7 +5,6 @@ import android.util.Log;
 import java.io.IOException;
 import java.util.List;
 
-import grupodobaralho.topfood_android.data.db.model.AuthResponse;
 import grupodobaralho.topfood_android.data.db.model.Restaurant;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import retrofit2.Call;

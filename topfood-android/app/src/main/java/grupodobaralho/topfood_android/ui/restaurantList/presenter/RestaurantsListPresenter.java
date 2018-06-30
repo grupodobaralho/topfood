@@ -1,7 +1,6 @@
 package grupodobaralho.topfood_android.ui.restaurantList.presenter;
 
 import android.content.Context;
-import android.view.View;
 
 import java.util.List;
 
@@ -28,6 +27,7 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
     @Override
     public void listAllRestaurants() {
         interactor.listAllRestaurants(this);
+        showProgressBar();
     }
 
     @Override
@@ -36,9 +36,13 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
     }
 
     @Override
-    public void showProgressBar(boolean status) {
-        int visibilidade = status ? View.VISIBLE : View.GONE;
-        view.showProgressBar(visibilidade);
+    public void showProgressBar() {
+        view.showProgressBar();
+    }
+
+    @Override
+    public void hideProgressBar() {
+        view.hideProgressBar();
     }
 
     @Override
@@ -48,11 +52,13 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
 
     @Override
     public void onApiError() {
+        hideProgressBar();
         view.showToast("Ocorreu algum erro no banco de dados.");
     }
 
     @Override
     public void onSuccess() {
+        hideProgressBar();
         restaurants = interactor.getRestaurants();
         view.showRestaurants();
     }

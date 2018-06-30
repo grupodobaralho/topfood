@@ -5,7 +5,9 @@ public interface IRestaurantsListView {
 
     void goToRestaurantDetail();
 
-    void showProgressBar(int visibilidade);
+    void showProgressBar();
+
+    void hideProgressBar();
 
     void showToast(String mensagem);
 }

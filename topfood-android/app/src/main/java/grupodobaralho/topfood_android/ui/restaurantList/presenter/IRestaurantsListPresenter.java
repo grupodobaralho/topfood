@@ -20,7 +20,9 @@ public interface IRestaurantsListPresenter {
 
     Context getContext();
 
-    void showProgressBar(boolean status);
+    void showProgressBar();
+
+    void hideProgressBar();
 
     List<Restaurant> getRestaurants();
 }

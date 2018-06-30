@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
     public void showRestaurants() {
         RecyclerView rvRestaurants = (RecyclerView) findViewById(R.id.rv_restaurants);
         rvRestaurants.setHasFixedSize(true);
+        rvRestaurants.setVisibility(View.VISIBLE);
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, RecyclerView.VERTICAL);
         rvRestaurants.setLayoutManager(layoutManager);
@@ -52,8 +54,13 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
     }
 
     @Override
-    public void showProgressBar(int visibilidade) {
-        findViewById(R.id.pb_restaurants).setVisibility(visibilidade);
+    public void showProgressBar() {
+        findViewById(R.id.pb_restaurants).setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        findViewById(R.id.pb_restaurants).setVisibility(View.GONE);
     }
 
     @Override

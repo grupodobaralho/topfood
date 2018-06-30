@@ -14,6 +14,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import grupodobaralho.topfood_android.R;
+import grupodobaralho.topfood_android.data.db.uiModels.productList.ProductListInteractor;
 import grupodobaralho.topfood_android.data.db.uiModels.restaurantsList.RestaurantsListInteractor;
 import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import grupodobaralho.topfood_android.ui.login.view.LoginActivity;
@@ -47,8 +48,8 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                RestaurantsListInteractor interactor = new RestaurantsListInteractor();
-                interactor.listAllRestaurants();
+                ProductListInteractor interactor = new ProductListInteractor();
+                interactor.listProductsRestaurant("5b26b3e379625c0014a249b3");
                 Toast.makeText(RestaurantsListView.this, "Funciona", Toast.LENGTH_SHORT).show();
             }
         });

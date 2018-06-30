@@ -7,6 +7,5 @@ import grupodobaralho.topfood_android.data.db.model.Restaurant;
 public interface IRestaurantsListInteractor {
 
     List<Restaurant> listAllRestaurants();
-    void chooseRestaurant(String idRestaurant);
 
 }

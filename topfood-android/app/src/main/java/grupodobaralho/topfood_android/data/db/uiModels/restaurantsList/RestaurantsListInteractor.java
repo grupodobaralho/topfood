@@ -42,9 +42,4 @@ public class RestaurantsListInteractor implements IRestaurantsListInteractor {
         });
         return restaurants;
     }
-
-    @Override
-    public void chooseRestaurant(String idRestaurant) {
-
-    }
 }

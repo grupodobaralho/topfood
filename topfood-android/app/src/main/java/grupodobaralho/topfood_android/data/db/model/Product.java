@@ -2,26 +2,33 @@ package grupodobaralho.topfood_android.data.db.model;
 
 import com.google.gson.annotations.SerializedName;
 
-class Product {
+public class Product {
 
     @SerializedName("_id")
     private String id;
-    @SerializedName("restaurant")
-    private Restaurant restaurant;
     @SerializedName("price")
     private String price;
     @SerializedName("name")
     private String name;
     @SerializedName("type")
     private String type;
+    @SerializedName("image")
+    private String image;
+    @SerializedName("createdAt")
+    private String createdAt;
+    @SerializedName("updatedAt")
+    private String updatedAt;
 
     //It is necessary to validate the data types of the attributes. Ex: price might be a double
-    public Product(String id, Restaurant restaurant, String price, String name, String type) {
+
+    public Product(String id, String price, String name, String type, String image, String createdAt, String updatedAt) {
         this.id = id;
-        this.restaurant = restaurant;
         this.price = price;
         this.name = name;
         this.type = type;
+        this.image = image;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public String getId() {
@@ -30,14 +37,6 @@ class Product {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
     }
 
     public String getPrice() {
@@ -62,5 +61,42 @@ class Product {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", price='" + price + '\'' +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", image='" + image + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                '}';
     }
 }

@@ -22,6 +22,10 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
         this.restaurants = restaurants;
     }
 
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater

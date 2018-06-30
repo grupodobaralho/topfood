@@ -20,7 +20,7 @@ public interface IRestaurantsListPresenter {
 
     Context getContext();
 
-    List<Restaurant> getRestaurants();
+    List<Restaurant> searchARestaurant(String name);
 
     boolean hasUserLogged();
 

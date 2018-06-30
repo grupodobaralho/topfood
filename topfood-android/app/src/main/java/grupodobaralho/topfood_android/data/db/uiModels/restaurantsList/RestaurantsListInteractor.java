@@ -16,7 +16,7 @@ public class RestaurantsListInteractor implements IRestaurantsListInteractor {
     List<Restaurant> restaurants;
 
     @Override
-    public void listAllRestaurants() {
+    public List<Restaurant> listAllRestaurants() {
         //A retrofit instance that uses the API_EndPoint Interface
         Call<List<Restaurant>> call = RetrofitInstance.retrofitCreate().getRestaurants();
 
@@ -40,6 +40,7 @@ public class RestaurantsListInteractor implements IRestaurantsListInteractor {
                 Log.e("Restaurants List", t.getLocalizedMessage(), t);
             }
         });
+        return restaurants;
     }
 
     @Override

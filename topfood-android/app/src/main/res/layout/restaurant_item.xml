@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rly_narrativa"
+    android:id="@+id/relative_layout_restaurants"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp" >
@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/grid_item_nomeacao_img"
+            android:id="@+id/restaurant_foto_img"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:padding="10dp"
@@ -25,7 +25,7 @@
             android:layout_marginStart="15dp">
 
             <TextView
-                android:id="@+id/usuario_name"
+                android:id="@+id/restaurant_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -36,7 +36,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/usuario_content"
+                android:id="@+id/restaurant_nota_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"

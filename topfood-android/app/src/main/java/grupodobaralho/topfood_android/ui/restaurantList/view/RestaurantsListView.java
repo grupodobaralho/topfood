@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,12 +15,10 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import grupodobaralho.topfood_android.R;
-import grupodobaralho.topfood_android.data.db.uiModels.productList.ProductListInteractor;
-import grupodobaralho.topfood_android.data.db.uiModels.restaurantsList.RestaurantsListInteractor;
+import grupodobaralho.topfood_android.data.db.uiModels.commentList.CommentListInteractor;
 import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import grupodobaralho.topfood_android.ui.login.view.LoginActivity;
 import grupodobaralho.topfood_android.ui.restaurantList.presenter.IRestaurantsListPresenter;
-import grupodobaralho.topfood_android.ui.restaurantList.presenter.RestaurantsListPresenter;
 
 public class RestaurantsListView extends AppCompatActivity implements IRestaurantsListView, SearchView.OnQueryTextListener{
 
@@ -48,9 +47,10 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                ProductListInteractor interactor = new ProductListInteractor();
-                interactor.listProductsRestaurant("5b26b3e379625c0014a249b3");
-                Toast.makeText(RestaurantsListView.this, "Funciona", Toast.LENGTH_SHORT).show();
+                CommentListInteractor interactor = new CommentListInteractor();
+                String token = UserBusiness.getInstance().getAccessToken();
+                interactor.deleteComment("5b382e445ced4700141f0dc6", "5b382ea65ced4700141f0dc8", "5b38309f5ced4700141f0dcf", token);
+                //interactor.createComment("5b382e445ced4700141f0dc6", "5b382ea65ced4700141f0dc8", token, "Meu novo comentarioo2");
             }
         });
     }

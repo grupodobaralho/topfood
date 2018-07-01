@@ -32,7 +32,7 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
 
     @Override
     public void listAllRestaurants() {
-        interactor.listAllRestaurants(this);
+        interactor.getRestaurants();
         showProgressBar();
     }
 

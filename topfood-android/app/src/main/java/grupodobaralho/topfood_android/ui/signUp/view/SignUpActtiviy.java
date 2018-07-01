@@ -24,7 +24,7 @@ public class SignUpActtiviy extends AppCompatActivity implements ISignUpView, Vi
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activiy_cadastro);
+        setContentView(R.layout.activity_signup);
 
         nomeCompleto = (EditText) findViewById(R.id.input_cadastro_name);
         username = (EditText) findViewById(R.id.input_cadastro_email);

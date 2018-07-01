@@ -1,7 +1,5 @@
 package grupodobaralho.topfood_android.ui.restaurantList.presenter;
 
-import android.content.Context;
-
 import java.util.List;
 
 import grupodobaralho.topfood_android.data.db.model.Restaurant;
@@ -18,7 +16,7 @@ public interface IRestaurantsListPresenter {
 
     void listAllRestaurants();
 
-    Context getContext();
+    List<Restaurant> getRestaurants();
 
     List<Restaurant> searchARestaurant(String name);
 

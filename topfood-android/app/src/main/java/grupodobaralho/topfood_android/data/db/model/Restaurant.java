@@ -12,7 +12,11 @@ public class Restaurant {
     @SerializedName("name")
     private String name;
     @SerializedName("products")
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
+    @SerializedName("image")
+    private String image;
+    @SerializedName("rating")
+    private String rating;
     @SerializedName("createdAt")
     private String createAt;
     @SerializedName("updateAt")
@@ -20,10 +24,12 @@ public class Restaurant {
     @SerializedName("__v")
     private String whatIsThis;
 
-    public Restaurant(String id, String name, List<Product> products, String createAt, String updateAt, String whatIsThis) {
+    public Restaurant(String id, String name, List<Product> products, String image, String rating, String createAt, String updateAt, String whatIsThis) {
         this.id = id;
         this.name = name;
         this.products = products;
+        this.image = image;
+        this.rating = rating;
         this.createAt = createAt;
         this.updateAt = updateAt;
         this.whatIsThis = whatIsThis;
@@ -51,6 +57,22 @@ public class Restaurant {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public String getCreateAt() {
@@ -83,6 +105,8 @@ public class Restaurant {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", products=" + products +
+                ", image='" + image + '\'' +
+                ", rating='" + rating + '\'' +
                 ", createAt='" + createAt + '\'' +
                 ", updateAt='" + updateAt + '\'' +
                 ", whatIsThis='" + whatIsThis + '\'' +

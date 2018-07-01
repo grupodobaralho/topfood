@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import grupodobaralho.topfood_android.R;
 import grupodobaralho.topfood_android.data.db.uiModels.commentList.CommentListInteractor;
+import grupodobaralho.topfood_android.data.db.uiModels.userInteractor.UserInteractor;
 import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import grupodobaralho.topfood_android.ui.login.view.LoginActivity;
 import grupodobaralho.topfood_android.ui.restaurantList.presenter.IRestaurantsListPresenter;
@@ -47,9 +48,12 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                CommentListInteractor interactor = new CommentListInteractor();
+                //CommentListInteractor interactor = new CommentListInteractor();
                 String token = UserBusiness.getInstance().getAccessToken();
-                interactor.deleteComment("5b382e445ced4700141f0dc6", "5b382ea65ced4700141f0dc8", "5b38309f5ced4700141f0dcf", token);
+                UserInteractor userInteractor = new UserInteractor();
+                userInteractor.getProfile(token);
+                Log.d("Olha o Token ae: ", token);
+                //interactor.deleteComment("5b382e445ced4700141f0dc6", "5b382ea65ced4700141f0dc8", "5b38309f5ced4700141f0dcf", token);
                 //interactor.createComment("5b382e445ced4700141f0dc6", "5b382ea65ced4700141f0dc8", token, "Meu novo comentarioo2");
             }
         });

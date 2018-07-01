@@ -15,17 +15,17 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 //https://medium.com/cr8resume/make-your-hand-dirty-with-retrofit-2-a-type-safe-http-client-for-android-and-java-c546f88b3a51
 public interface API_EndPoint {
-    @GET("?/?/")
-    Call<User> getUserData();
 
-//    @GET("users/profile")
-//    Call<List<User>> getTesteData();
+    @GET("users/profile")
+    @Headers({"Content-Type: application/json"})
+    Call<User> getProfile(@Header("Authorization") String accessToken);
 
     @POST("users/login")
     Call<AuthResponse> authUser(@Body AuthRequest request);
@@ -53,6 +53,7 @@ public interface API_EndPoint {
                                 @Header("Content-Type") String json,
                                 @Header("Authorization") String accessToken,
                                 @Body Text text);
+
 
     @DELETE("restaurants/{restaurantId}/products/{productId}/comments/{commentId}")
     Call<Comment> deleteComment(@Path("restaurantId") String restaurantId, @Path("productId") String productId, @Path("commentId") String commentId,

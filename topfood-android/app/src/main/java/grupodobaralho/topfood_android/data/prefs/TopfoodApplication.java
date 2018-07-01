@@ -1,4 +1,4 @@
-package grupodobaralho.topfood_android;
+package grupodobaralho.topfood_android.data.prefs;
 
 import android.app.Application;
 import android.content.Context;

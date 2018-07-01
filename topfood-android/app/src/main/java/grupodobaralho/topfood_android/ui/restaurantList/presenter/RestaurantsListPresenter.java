@@ -72,11 +72,11 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
         view.showToast("Logout realizado com sucesso.");
     }
 
-    public void showProgressBar() {
+    private void showProgressBar() {
         view.showProgressBar();
     }
 
-    public void hideProgressBar() {
+    private void hideProgressBar() {
         view.hideProgressBar();
     }
 }

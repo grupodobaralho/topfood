@@ -2,10 +2,11 @@ package grupodobaralho.topfood_android.data.db.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Restaurant {
+public class Restaurant implements Serializable {
 
     @SerializedName("_id")
     private String id;

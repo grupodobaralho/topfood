@@ -1,5 +1,6 @@
 package grupodobaralho.topfood_android.ui.restaurantList.view;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,7 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
     private IRestaurantsListView restaurantsView;
     private List<Restaurant> restaurants;
 
-    public RestaurantsListAdapter(RestaurantsListView restaurantsView, List<Restaurant> restaurants){
+    RestaurantsListAdapter(RestaurantsListView restaurantsView, List<Restaurant> restaurants){
         this.restaurantsView = restaurantsView;
         this.restaurants = restaurants;
     }
@@ -26,17 +27,17 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
         this.restaurants = restaurants;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.restaurant_item, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.setDados(restaurants.get(position));
     }
 
@@ -50,22 +51,24 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RestaurantsList
 
         private TextView tvName;
         private RelativeLayout relativeLayout;
+        private Restaurant myRestaurant;
 
         private ViewHolder(View itemView) {
             super(itemView);
 
-            tvName = (TextView) itemView.findViewById(R.id.restaurant_name_tv);
-            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.relative_layout_restaurants);
+            tvName = itemView.findViewById(R.id.restaurant_name_tv);
+            relativeLayout = itemView.findViewById(R.id.relative_layout_restaurant);
             relativeLayout.setOnClickListener(this);
         }
 
         private void setDados(Restaurant restaurant){
             tvName.setText(restaurant.getName());
+            myRestaurant = restaurant;
         }
 
         @Override
         public void onClick(View view) {
-            restaurantsView.goToRestaurantDetail();
+            restaurantsView.goToRestaurantDetail(myRestaurant);
         }
     }
 }

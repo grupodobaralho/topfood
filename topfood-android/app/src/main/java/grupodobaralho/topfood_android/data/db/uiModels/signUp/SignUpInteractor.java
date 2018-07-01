@@ -2,7 +2,7 @@ package grupodobaralho.topfood_android.data.db.uiModels.signUp;
 
 import android.widget.Toast;
 
-import grupodobaralho.topfood_android.TopfoodApplication;
+import grupodobaralho.topfood_android.data.prefs.TopfoodApplication;
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.SignUpResponse;
 import grupodobaralho.topfood_android.data.db.uiModels.login.ILoginInteractor;

@@ -8,39 +8,43 @@ import java.util.List;
 import grupodobaralho.topfood_android.data.db.model.Product;
 import grupodobaralho.topfood_android.data.db.model.Restaurant;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
+import grupodobaralho.topfood_android.ui.productList.presenter.IProductListPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProductListInteractor implements IProductListInteractor {
 
-    List<Product> products;
+    private List<Product> products;
 
     @Override
-    public List<Product> listProductsRestaurant(String restaurantId) {
+    public void listProductsRestaurant(final String restaurantId, final IProductListPresenter.OnProductListFinishedListener listener) {
         //A retrofit instance that uses the API_EndPoint Interface
         Call<List<Product>> call = RetrofitInstance.retrofitCreate().getProductsRestaurant(restaurantId);
 
         call.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                if (response.body() != null) {
-                    products = response.body();
-                    Log.d("My error", products.toString());
+                if (response.code() != 200) {
+                    listener.onApiError();
+                    return;
                 } else {
-                    try {
-                        Log.e("Product List", response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    products = response.body();
+                    listener.onSuccess();
+                    return;
                 }
             }
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                Log.e("Product List", t.getLocalizedMessage(), t);
+               listener.onApiError();
+               return;
             }
         });
+    }
+
+    @Override
+    public List<Product> getProducts() {
         return products;
     }
 }

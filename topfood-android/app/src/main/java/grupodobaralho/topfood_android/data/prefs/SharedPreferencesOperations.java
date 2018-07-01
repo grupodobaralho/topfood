@@ -3,8 +3,6 @@ package grupodobaralho.topfood_android.data.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import grupodobaralho.topfood_android.TopfoodApplication;
-
 // local storage utilizado em apps Android. Baseado no projeto adocoes.
 public class SharedPreferencesOperations {
 

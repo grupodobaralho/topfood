@@ -46,7 +46,7 @@ public class CommentListInteractor implements ICommentListInteractor {
     @Override
     public Comment createComment(String restaurantId, String productId, String accessToken, String text) {
         Text oText = new Text(text);
-        Call<Comment> call = RetrofitInstance.retrofitCreate().createComment(restaurantId, productId, "application/json", accessToken, oText);
+        Call<Comment> call = RetrofitInstance.retrofitCreate().createComment(restaurantId, productId,  accessToken, oText);
 
         call.enqueue(new Callback<Comment>() {
             @Override
@@ -74,7 +74,7 @@ public class CommentListInteractor implements ICommentListInteractor {
     public Comment updateComment(String restaurantId, String productId, String commentId, String accessToken, String text) {
         Text oText = new Text(text);
         Call<Comment> call = RetrofitInstance.retrofitCreate().updateComment(restaurantId, productId, commentId
-                ,"application/json", accessToken, oText);
+                , accessToken, oText);
 
         call.enqueue(new Callback<Comment>() {
             @Override
@@ -101,7 +101,7 @@ public class CommentListInteractor implements ICommentListInteractor {
     @Override
     public boolean deleteComment(String restaurantId, String productId, String commentId, String accessToken) {
         Call<Comment> call = RetrofitInstance.retrofitCreate().deleteComment(restaurantId, productId, commentId
-                ,"application/json", accessToken);
+                , accessToken);
 
         call.enqueue(new Callback<Comment>() {
             @Override

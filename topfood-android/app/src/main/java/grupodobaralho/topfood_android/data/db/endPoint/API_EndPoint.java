@@ -23,40 +23,45 @@ import retrofit2.http.Path;
 //https://medium.com/cr8resume/make-your-hand-dirty-with-retrofit-2-a-type-safe-http-client-for-android-and-java-c546f88b3a51
 public interface API_EndPoint {
 
-    @GET("users/profile")
     @Headers({"Content-Type: application/json"})
+    @GET("users/profile")
     Call<User> getProfile(@Header("Authorization") String accessToken);
 
+    @Headers({"Content-Type: application/json"})
     @POST("users/login")
     Call<AuthResponse> authUser(@Body AuthRequest request);
 
+    @Headers({"Content-Type: application/json"})
     @POST("users/signup")
     Call<SignUpResponse> signUphUser(@Body AuthRequest request);
 
+    @Headers({"Content-Type: application/json"})
     @GET("restaurants")
     Call<List<Restaurant>> getRestaurants();
 
+    @Headers({"Content-Type: application/json"})
     @GET("restaurants/{restaurantId}/products")
     Call<List<Product>> getProductsRestaurant(@Path("restaurantId") String restaurantId);
 
+    @Headers({"Content-Type: application/json"})
     @GET("restaurants/{restaurantId}/products/{productId}/comments")
     Call<List<Comment>> getCommentsProduct(@Path("restaurantId") String restaurantId, @Path("productId") String productId);
 
+    @Headers({"Content-Type: application/json"})
     @POST("restaurants/{restaurantId}/products/{productId}/comments")
     Call<Comment> createComment(@Path("restaurantId") String restaurantId, @Path("productId") String productId,
-                                @Header("Content-Type") String json,
                                 @Header("Authorization") String accessToken,
                                 @Body Text text);
 
+    @Headers({"Content-Type: application/json"})
     @PUT("restaurants/{restaurantId}/products/{productId}/comments/{commentId}")
     Call<Comment> updateComment(@Path("restaurantId") String restaurantId, @Path("productId") String productId, @Path("commentId") String commentId,
-                                @Header("Content-Type") String json,
                                 @Header("Authorization") String accessToken,
                                 @Body Text text);
 
 
+    @Headers({"Content-Type: application/json"})
     @DELETE("restaurants/{restaurantId}/products/{productId}/comments/{commentId}")
     Call<Comment> deleteComment(@Path("restaurantId") String restaurantId, @Path("productId") String productId, @Path("commentId") String commentId,
-                                @Header("Content-Type") String json,
                                 @Header("Authorization") String accessToken);
 }

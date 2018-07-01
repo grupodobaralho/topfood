@@ -1,7 +1,5 @@
 package grupodobaralho.topfood_android.ui.restaurantList.presenter;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +14,6 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
 
     private IRestaurantsListInteractor interactor;
     private IRestaurantsListView view;
-    private List<Restaurant> restaurants;
     private List<Restaurant> auxRestaurants;
     private UserBusiness userBusiness = UserBusiness.getInstance();
 
@@ -32,20 +29,20 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
 
     @Override
     public void listAllRestaurants() {
-        interactor.getRestaurants();
+        interactor.listAllRestaurants(this);
         showProgressBar();
     }
 
     @Override
-    public Context getContext() {
-        return (Context) view;
+    public List<Restaurant> getRestaurants() {
+        return interactor.getRestaurants();
     }
 
     @Override
     public List<Restaurant> searchARestaurant(String name) {
         name = name.toLowerCase();
         auxRestaurants.clear();
-        for(Restaurant restaurant: restaurants) {
+        for(Restaurant restaurant: interactor.getRestaurants()) {
             if (restaurant.getName().toLowerCase().contains(name))
                 auxRestaurants.add(restaurant);
         }
@@ -61,8 +58,7 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
     @Override
     public void onSuccess() {
         hideProgressBar();
-        restaurants = interactor.getRestaurants();
-        view.showRestaurants(restaurants);
+        view.showRestaurants();
     }
 
     @Override

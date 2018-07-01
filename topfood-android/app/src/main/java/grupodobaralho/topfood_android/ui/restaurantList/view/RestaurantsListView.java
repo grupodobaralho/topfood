@@ -12,10 +12,7 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import java.util.List;
-
 import grupodobaralho.topfood_android.R;
-import grupodobaralho.topfood_android.data.db.model.Restaurant;
 import grupodobaralho.topfood_android.ui.login.view.LoginActivity;
 import grupodobaralho.topfood_android.ui.restaurantList.presenter.IRestaurantsListPresenter;
 import grupodobaralho.topfood_android.ui.restaurantList.presenter.RestaurantsListPresenter;
@@ -47,10 +44,10 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
     }
 
     @Override
-    public void showRestaurants(List<Restaurant> restaurants) {
+    public void showRestaurants() {
         rvRestaurants.setVisibility(View.VISIBLE);
 
-        adapter = new RestaurantsListAdapter(this, restaurants);
+        adapter = new RestaurantsListAdapter(this, presenter.getRestaurants());
         rvRestaurants.setAdapter(adapter);
     }
 

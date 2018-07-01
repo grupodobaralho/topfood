@@ -28,7 +28,7 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_list);
 
-        SearchView searchView = (SearchView) findViewById(R.id.activity_catalog_search);
+        SearchView searchView = (SearchView) findViewById(R.id.restaurant_list_search);
         searchView.setOnQueryTextListener(this);
 
         //Variaveis necessarias para trabalhar com recyclerview

@@ -7,11 +7,11 @@ public interface ISignUpPresenter {
         void onPasswordError();
         void onUsernameOrPasswordAlreadyRegistered();
         void onApiError();
+        void onSuccessSignUp();
         void onSuccess();
     }
 
     void validateSignUp(String email, String password, String confirmPassword);
     boolean verifyConfirmPasswordError(String password, String confrimPassword);
-    void onDestroy();
 
 }

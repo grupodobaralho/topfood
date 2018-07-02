@@ -23,11 +23,6 @@ public class LoginPresenter implements ILoginPresenter, ILoginPresenter.OnLoginF
     }
 
     @Override
-    public void onDestroy() {
-        loginView = null;
-    }
-
-    @Override
     public void onEmailError() {
         if (loginView != null) {
             loginView.setUsernameError();

@@ -1,7 +1,10 @@
 package grupodobaralho.topfood_android.ui.signUp.presenter;
 
+import android.widget.Toast;
+
 import grupodobaralho.topfood_android.data.db.uiModels.signUp.ISignUpInteractor;
 import grupodobaralho.topfood_android.data.db.uiModels.signUp.SignUpInteractor;
+import grupodobaralho.topfood_android.data.prefs.TopfoodApplication;
 import grupodobaralho.topfood_android.ui.signUp.view.ISignUpView;
 
 public class SignUpPresenter implements ISignUpPresenter, ISignUpPresenter.OnCadastroFinishedListener {
@@ -37,11 +40,6 @@ public class SignUpPresenter implements ISignUpPresenter, ISignUpPresenter.OnCad
     }
 
     @Override
-    public void onDestroy() {
-        cadastroView = null;
-    }
-
-    @Override
     public void onEmailError() {
         if (cadastroView != null) {
             cadastroView.setUsernameError();
@@ -74,9 +72,16 @@ public class SignUpPresenter implements ISignUpPresenter, ISignUpPresenter.OnCad
     }
 
     @Override
+    public void onSuccessSignUp() {
+        if (cadastroView != null) {
+            cadastroView.onSuccessSignUp("Usuario cadastrado com sucesso.");
+        }
+    }
+
+    @Override
     public void onSuccess() {
-        if (cadastroView != null)
-            cadastroView.hideProgress();
+        if (cadastroView != null) {
             cadastroView.navigateToHome();
+        }
     }
 }

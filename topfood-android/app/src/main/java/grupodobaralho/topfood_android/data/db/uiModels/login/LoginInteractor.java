@@ -2,6 +2,7 @@ package grupodobaralho.topfood_android.data.db.uiModels.login;
 
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.AuthResponse;
+import grupodobaralho.topfood_android.data.db.uiModels.signUp.SignUpInteractor;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import grupodobaralho.topfood_android.ui.login.presenter.ILoginPresenter;
@@ -39,12 +40,7 @@ public class LoginInteractor implements ILoginInteractor {
 
                 String token = response.body().getAccess_token();
                 UserBusiness.getInstance().updateAccessToken(token);
-
-                if (listener == null)
-                    return;
-                else
-                    listener.onSuccess();
-
+                listener.onSuccess();
             }
 
             @Override

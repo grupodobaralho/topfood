@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import grupodobaralho.topfood_android.R;
 import grupodobaralho.topfood_android.data.db.model.Restaurant;
-import grupodobaralho.topfood_android.ui.login.view.LoginActivity;
+import grupodobaralho.topfood_android.ui.login.view.LoginView;
 import grupodobaralho.topfood_android.ui.productList.view.ProductListView;
 import grupodobaralho.topfood_android.ui.restaurantList.presenter.IRestaurantsListPresenter;
 import grupodobaralho.topfood_android.ui.restaurantList.presenter.RestaurantsListPresenter;
@@ -104,7 +104,7 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
         if (itemId == R.id.action_logout) {
 
             if(!presenter.hasUserLogged()) {
-                startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(this, LoginView.class));
             } else {
                 presenter.makeLogout();
                 startActivity(new Intent(this, RestaurantsListView.class));

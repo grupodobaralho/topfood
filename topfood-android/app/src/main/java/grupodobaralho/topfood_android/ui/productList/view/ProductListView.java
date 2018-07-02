@@ -16,10 +16,9 @@ import android.widget.Toast;
 import grupodobaralho.topfood_android.R;
 import grupodobaralho.topfood_android.data.db.model.Product;
 import grupodobaralho.topfood_android.data.db.model.Restaurant;
-import grupodobaralho.topfood_android.ui.login.view.LoginActivity;
+import grupodobaralho.topfood_android.ui.login.view.LoginView;
 import grupodobaralho.topfood_android.ui.productList.presenter.IProductListPresenter;
 import grupodobaralho.topfood_android.ui.productList.presenter.ProductListPresenter;
-import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
 
 public class ProductListView extends AppCompatActivity implements IProductListView, SearchView.OnQueryTextListener {
 
@@ -33,9 +32,8 @@ public class ProductListView extends AppCompatActivity implements IProductListVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
 
-        if(getSupportActionBar() != null){
+        if(getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
 
         Intent intentFromList = getIntent();
         if (intentFromList != null)
@@ -123,7 +121,7 @@ public class ProductListView extends AppCompatActivity implements IProductListVi
 
             case R.id.action_logout:
                 if (!presenter.hasUserLogged()) {
-                    startActivity(new Intent(this, LoginActivity.class));
+                    startActivity(new Intent(this, LoginView.class));
                 } else {
                     presenter.makeLogout();
                     startActivity(new Intent(this, ProductListView.class));

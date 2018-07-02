@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,13 +14,13 @@ import grupodobaralho.topfood_android.R;
 import grupodobaralho.topfood_android.ui.login.presenter.ILoginPresenter;
 import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenter;
 import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
-import grupodobaralho.topfood_android.ui.signUp.view.SignUpActtiviy;
+import grupodobaralho.topfood_android.ui.signUp.view.SignUpView;
 
 /**
  * A login screen that offers login via email/password.
  * Classe feita com base em: https://github.com/antoniolg/androidmvp/tree/master/app/src/main/java/com/antonioleiva/mvpexample/app/Login
  */
-public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
+public class LoginView extends AppCompatActivity implements ILoginView, View.OnClickListener {
 
     private ProgressDialog mProgress;
     private EditText email;
@@ -30,8 +31,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = (EditText) findViewById(R.id.input_email);
-        password = (EditText) findViewById(R.id.input_password);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        email = findViewById(R.id.input_email);
+        password = findViewById(R.id.input_password);
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_signup).setOnClickListener(this);
 
@@ -42,11 +46,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         mProgress.setIndeterminate(true);
 
         presenter = new LoginPresenter(this);
-    }
-
-    @Override protected void onDestroy() {
-//        presenter.onDestroy();
-        super.onDestroy();
     }
 
     @Override public void showProgress() {
@@ -94,23 +93,25 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
                 presenter.validateCredentials(email.getText().toString(), password.getText().toString());
                 break;
             case R.id.btn_signup:
-                startActivity(new Intent(this, SignUpActtiviy.class));
+                startActivity(new Intent(this, SignUpView.class));
                 finish();
                 break;
             default:
-                return;
         }
     }
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setMessage(teste.toString())
-//                .setCancelable(false)
-//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        dialog.cancel();
-//                    }
-//                });
-//        AlertDialog alert = builder.create();
-//        alert.show();
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final int itemId = item.getItemId();
+
+        if(itemId == android.R.id.home) {
+            this.onBackPressed();
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }
 

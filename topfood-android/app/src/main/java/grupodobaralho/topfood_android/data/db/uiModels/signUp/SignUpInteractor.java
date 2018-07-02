@@ -1,12 +1,8 @@
 package grupodobaralho.topfood_android.data.db.uiModels.signUp;
 
-import android.widget.Toast;
-
-import grupodobaralho.topfood_android.data.prefs.TopfoodApplication;
+import grupodobaralho.topfood_android.data.db.model.AuthResponse;
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.SignUpResponse;
-import grupodobaralho.topfood_android.data.db.uiModels.login.ILoginInteractor;
-import grupodobaralho.topfood_android.data.db.uiModels.login.LoginInteractor;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import grupodobaralho.topfood_android.data.prefs.UserBusiness;
 import grupodobaralho.topfood_android.ui.signUp.presenter.ISignUpPresenter;
@@ -16,7 +12,7 @@ import retrofit2.Response;
 
 public class SignUpInteractor implements ISignUpInteractor {
 
-    private ILoginInteractor loginInteractor;
+    private ISignUpPresenter.OnCadastroFinishedListener listener;
 
     @Override
     public void cadastro(final String username, final String password, final ISignUpPresenter.OnCadastroFinishedListener listener) {
@@ -31,7 +27,9 @@ public class SignUpInteractor implements ISignUpInteractor {
             return;
         }
 
-        AuthRequest authRquest = new AuthRequest(username, password);
+        this.listener = listener;
+
+        final AuthRequest authRquest = new AuthRequest(username, password);
 
         //A retrofit instance that uses the API_EndPoint Interface
         Call<SignUpResponse> call = RetrofitInstance.retrofitCreate().signUphUser(authRquest);
@@ -43,24 +41,29 @@ public class SignUpInteractor implements ISignUpInteractor {
                     listener.onUsernameOrPasswordAlreadyRegistered();
                     return;
                 }
-                Boolean success = response.body().isSuccess();
 
-                if (success) {
-                    Toast.makeText(TopfoodApplication.getTopfoodApplicationContext(), "Usuario " + username + " cadastrado com sucesso.", Toast.LENGTH_LONG).show();
-                    loginInteractor = new LoginInteractor();
-                    loginInteractor.login(username, password, null);
-                }
+                listener.onSuccessSignUp();
 
-                // Espera o loggar para realizar a transicao.
-                if (!UserBusiness.getInstance().isLogged()) {
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                Call<AuthResponse> callLogin = RetrofitInstance.retrofitCreate().authUser(authRquest);
+
+                callLogin.enqueue(new Callback<AuthResponse>() {
+                    @Override
+                    public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                        if (response.code() != 200) {
+                            listener.onApiError();
+                            return;
+                        }
+
+                        String token = response.body().getAccess_token();
+                        UserBusiness.getInstance().updateAccessToken(token);
+                        listener.onSuccess();
                     }
-                }
-                listener.onSuccess();
-                return;
+
+                    @Override
+                    public void onFailure(Call<AuthResponse> call, Throwable t) {
+                        listener.onApiError();
+                    }
+                });
             }
 
             @Override

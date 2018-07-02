@@ -5,15 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import grupodobaralho.topfood_android.R;
+import grupodobaralho.topfood_android.data.prefs.TopfoodApplication;
 import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
 import grupodobaralho.topfood_android.ui.signUp.presenter.SignUpPresenter;
 import grupodobaralho.topfood_android.ui.signUp.presenter.ISignUpPresenter;
 
-public class SignUpActtiviy extends AppCompatActivity implements ISignUpView, View.OnClickListener {
+public class SignUpView extends AppCompatActivity implements ISignUpView, View.OnClickListener {
 
     private ProgressDialog mProgress;
     private EditText nomeCompleto;
@@ -26,10 +29,13 @@ public class SignUpActtiviy extends AppCompatActivity implements ISignUpView, Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        nomeCompleto = (EditText) findViewById(R.id.input_cadastro_name);
-        username = (EditText) findViewById(R.id.input_cadastro_email);
-        password = (EditText) findViewById(R.id.input_cadastro_password);
-        confirmPassword = (EditText) findViewById(R.id.input_cadastro_confirm_password);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        nomeCompleto = findViewById(R.id.input_cadastro_name);
+        username = findViewById(R.id.input_cadastro_email);
+        password = findViewById(R.id.input_cadastro_password);
+        confirmPassword = findViewById(R.id.input_cadastro_confirm_password);
         findViewById(R.id.btn_cadastro_signup).setOnClickListener(this);
 
         mProgress = new ProgressDialog(this);
@@ -39,12 +45,6 @@ public class SignUpActtiviy extends AppCompatActivity implements ISignUpView, Vi
         mProgress.setIndeterminate(true);
 
         presenter = new SignUpPresenter(this);
-    }
-
-
-    @Override
-    public void setNomeCompletoError() {
-        nomeCompleto.setError(getString(R.string.nome_completo_error));
     }
 
     @Override
@@ -89,6 +89,11 @@ public class SignUpActtiviy extends AppCompatActivity implements ISignUpView, Vi
     }
 
     @Override
+    public void onSuccessSignUp(String mensagem) {
+        Toast.makeText(TopfoodApplication.getTopfoodApplicationContext(), mensagem, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void navigateToHome() {
         startActivity(new Intent(this, RestaurantsListView.class));
         finish();
@@ -97,5 +102,18 @@ public class SignUpActtiviy extends AppCompatActivity implements ISignUpView, Vi
     @Override
     public void onClick(View view) {
         presenter.validateSignUp(username.getText().toString(), password.getText().toString(), confirmPassword.getText().toString());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final int itemId = item.getItemId();
+
+        if(itemId == android.R.id.home) {
+            this.onBackPressed();
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

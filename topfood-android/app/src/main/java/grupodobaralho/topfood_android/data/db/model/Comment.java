@@ -1,6 +1,9 @@
 package grupodobaralho.topfood_android.data.db.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.text.*;
+import java.util.Date;
+
 //https://stackoverflow.com/questions/23070298/get-nested-json-object-with-gson-using-retrofit/23071080
 public class Comment {
 
@@ -59,7 +62,9 @@ public class Comment {
     }
 
     public String getCreatedAt() {
-        return createdAt;
+        String[] parts = createdAt.split("T");
+        String[] newDate = parts[0].split("-");
+        return newDate[2] + "/" + newDate[1] + "/" + newDate[0];
     }
 
     public void setCreatedAt(String createdAt) {

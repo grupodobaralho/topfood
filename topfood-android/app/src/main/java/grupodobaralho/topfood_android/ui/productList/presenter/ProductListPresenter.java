@@ -71,11 +71,13 @@ public class ProductListPresenter implements IProductListPresenter, IProductList
         view.showToast("Logout realizado com sucesso.");
     }
 
-    private void showProgressBar() {
+    @Override
+    public void showProgressBar() {
         view.showProgressBar();
     }
 
-    private void hideProgressBar() {
+    @Override
+    public void hideProgressBar() {
         view.hideProgressBar();
     }
 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import grupodobaralho.topfood_android.R;
 import grupodobaralho.topfood_android.data.db.model.Product;
 import grupodobaralho.topfood_android.data.db.model.Restaurant;
+import grupodobaralho.topfood_android.ui.commentList.view.CommentListView;
 import grupodobaralho.topfood_android.ui.login.view.LoginView;
 import grupodobaralho.topfood_android.ui.productList.presenter.IProductListPresenter;
 import grupodobaralho.topfood_android.ui.productList.presenter.ProductListPresenter;
@@ -84,9 +85,10 @@ public class ProductListView extends AppCompatActivity implements IProductListVi
 
     @Override
     public void goToProductComments(Product product) {
-//        Intent intent = new Intent(this, ProductListView.class);
-//        intent.putExtra(ProductListView.EXTRA_RESTAURANT, restaurant);
-//        startActivity(intent);
+        Intent intent = new Intent(this, CommentListView.class);
+        intent.putExtra(CommentListView.EXTRA_RESTAURANT, restaurant);
+        intent.putExtra(CommentListView.EXTRA_PRODUCT, product);
+        startActivity(intent);
     }
 
     @Override

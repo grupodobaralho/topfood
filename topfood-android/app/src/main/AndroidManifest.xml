@@ -38,6 +38,10 @@
             android:name=".ui.productList.view.ProductListView"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".ui.commentList.view.CommentListView"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

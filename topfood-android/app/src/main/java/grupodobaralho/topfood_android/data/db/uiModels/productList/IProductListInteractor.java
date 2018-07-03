@@ -8,6 +8,7 @@ import grupodobaralho.topfood_android.ui.productList.presenter.IProductListPrese
 public interface IProductListInteractor {
 
     void listProductsRestaurant(final String restaurantId, final IProductListPresenter.OnProductListFinishedListener listener);
+
     List<Product> getProducts();
 
 }

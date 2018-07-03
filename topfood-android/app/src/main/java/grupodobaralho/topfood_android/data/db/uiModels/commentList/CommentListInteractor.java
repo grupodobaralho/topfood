@@ -8,6 +8,7 @@ import java.util.List;
 import grupodobaralho.topfood_android.data.db.model.Comment;
 import grupodobaralho.topfood_android.data.db.model.Text;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
+import grupodobaralho.topfood_android.ui.commentList.presenter.ICommentListPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,21 +19,19 @@ public class CommentListInteractor implements ICommentListInteractor {
     private Comment comment;
 
     @Override
-    public List<Comment> listCommentsProduct(String restaurantId, String productId) {
+    public void listCommentsProduct(final String restaurantId, final String productId, final ICommentListPresenter.OnCommentListFinishedListener listener) {
         Call<List<Comment>> call = RetrofitInstance.retrofitCreate().getCommentsProduct(restaurantId, productId);
 
         call.enqueue(new Callback<List<Comment>>() {
             @Override
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
-                if (response.body() != null) {
-                    comments = response.body();
-                } else {
-                    try {
-                        Log.e("Comment List", response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                if (response.code() != 200) {
+                    listener.onApiError();
+                    return;
                 }
+
+                comments = response.body();
+                listener.onSuccess();
             }
 
             @Override
@@ -40,6 +39,10 @@ public class CommentListInteractor implements ICommentListInteractor {
                 Log.e("Comment List Failed", t.getLocalizedMessage(), t);
             }
         });
+    }
+
+    @Override
+    public List<Comment> getComments() {
         return comments;
     }
 

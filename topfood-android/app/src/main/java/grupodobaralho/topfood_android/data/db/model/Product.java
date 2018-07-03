@@ -2,7 +2,9 @@ package grupodobaralho.topfood_android.data.db.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     @SerializedName("_id")
     private String id;
@@ -40,7 +42,13 @@ public class Product {
     }
 
     public String getPrice() {
-        return price;
+        float number = Float.parseFloat(price);
+        float epsilon = 0.004f; // 4 tenths of a cent
+        if (Math.abs(Math.round(number) - number) < epsilon) {
+            return "R$ " + String.format("%1.0f", number); // sdb
+        } else {
+            return "R$ " + String.format("%1.2f", number); // dj_segfault
+        }
     }
 
     public void setPrice(String price) {

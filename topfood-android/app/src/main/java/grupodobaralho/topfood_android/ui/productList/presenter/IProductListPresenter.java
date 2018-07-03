@@ -25,4 +25,8 @@ public interface IProductListPresenter {
 
     void makeLogout();
 
+    void showProgressBar();
+
+    void hideProgressBar();
+
 }

@@ -14,6 +14,7 @@ public class CommentListPresenter implements ICommentListPresenter, ICommentList
     private ICommentListInteractor interactor;
     private ICommentListView view;
     private UserBusiness userBusiness = UserBusiness.getInstance();
+    private String restaurantId, productId;
 
     public CommentListPresenter() {
         interactor = new CommentListInteractor();
@@ -25,11 +26,21 @@ public class CommentListPresenter implements ICommentListPresenter, ICommentList
     }
 
     @Override
-    public void listAllComments(String restaurantId, String productId) {
+    public void setIds(String restaurantId, String productId) {
+        this.restaurantId = restaurantId;
+        this.productId = productId;
+    }
+
+    @Override
+    public void listAllComments() {
         interactor.listCommentsProduct(restaurantId, productId, this);
         showProgressBar();
     }
 
+    @Override
+    public void delComment(Comment comment) {
+        interactor.deleteComment(restaurantId, productId, comment.getId(), userBusiness.getAccessToken(), this);
+    }
 
     @Override
     public List<Comment> getComments() {
@@ -49,6 +60,22 @@ public class CommentListPresenter implements ICommentListPresenter, ICommentList
     }
 
     @Override
+    public void onSuccessDel() {
+        view.showToast("Mensagem removida com sucesso.");
+        interactor.listCommentsProduct(restaurantId, productId, this);
+    }
+
+    @Override
+    public void showProgressBar() {
+        view.showProgressBar();
+    }
+
+    @Override
+    public void hideProgressBar() {
+        view.hideProgressBar();
+    }
+
+    @Override
     public boolean hasUserLogged() {
         return userBusiness.isLogged();
     }
@@ -60,12 +87,10 @@ public class CommentListPresenter implements ICommentListPresenter, ICommentList
     }
 
     @Override
-    public void showProgressBar() {
-        view.showProgressBar();
-    }
-
-    @Override
-    public void hideProgressBar() {
-        view.hideProgressBar();
+    public boolean wasTheUserLoggedWhoCommented(Comment comment) {
+        if(hasUserLogged() && comment.getAuthor().getId().equals(userBusiness.getUserId()))
+            return true;
+        else
+            return false;
     }
 }

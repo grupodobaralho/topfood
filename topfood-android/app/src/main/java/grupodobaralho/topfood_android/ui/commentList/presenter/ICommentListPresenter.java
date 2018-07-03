@@ -10,11 +10,16 @@ public interface ICommentListPresenter {
     interface OnCommentListFinishedListener {
         void onApiError();
         void onSuccess();
+        void onSuccessDel();
     }
 
     void setView(ICommentListView view);
 
-    void listAllComments(String restaurantId, String productId);
+    void setIds(String restaurantId, String productId);
+
+    void listAllComments();
+
+    void delComment(Comment comment);
 
     List<Comment> getComments();
 
@@ -25,5 +30,7 @@ public interface ICommentListPresenter {
     void showProgressBar();
 
     void hideProgressBar();
+
+    boolean wasTheUserLoggedWhoCommented(Comment comment);
 
 }

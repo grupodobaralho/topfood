@@ -39,7 +39,8 @@ public class LoginInteractor implements ILoginInteractor {
                 }
 
                 String token = response.body().getAccess_token();
-                UserBusiness.getInstance().updateAccessToken(token);
+                String userId = response.body().getId();
+                UserBusiness.getInstance().updateAccessToken(token, userId);
                 listener.onSuccess();
             }
 

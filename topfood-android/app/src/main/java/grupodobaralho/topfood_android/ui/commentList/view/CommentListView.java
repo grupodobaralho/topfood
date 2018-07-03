@@ -27,6 +27,7 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
     private Restaurant restaurant;
     private Product product;
     private ICommentListPresenter presenter;
+    private CommentListAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +52,8 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
         if(presenter == null)
             presenter = new CommentListPresenter();
         presenter.setView(this);
-        presenter.listAllComments(restaurant.getId(), product.getId());
+        presenter.setIds(restaurant.getId(), product.getId());
+        presenter.listAllComments();
     }
 
     @Override
@@ -63,7 +65,7 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
         rvComment.setLayoutManager(layoutManager);
         rvComment.setVisibility(View.VISIBLE);
 
-        CommentListAdapter adapter = new CommentListAdapter(this, presenter.getComments());
+        adapter = new CommentListAdapter(presenter, presenter.getComments());
         rvComment.setAdapter(adapter);
     }
 
@@ -103,7 +105,7 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
                     startActivity(new Intent(this, LoginView.class));
                 } else {
                     presenter.makeLogout();
-                    startActivity(new Intent(this, ProductListView.class));
+                    startActivity(new Intent(this, CommentListView.class));
                     finish();
                 }
                 break;

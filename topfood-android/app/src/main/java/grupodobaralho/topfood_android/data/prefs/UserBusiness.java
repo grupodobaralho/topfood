@@ -3,9 +3,9 @@ package grupodobaralho.topfood_android.data.prefs;
 public class UserBusiness {
 
     private String accessToken;
+    private String userid;
 
     private static final String prefix = "Bearer ";
-//    private static final String anonymousToken = "Bearer anonymous";
 
     private static UserBusiness instance;
 
@@ -18,9 +18,11 @@ public class UserBusiness {
         return instance;
     }
 
-    public void updateAccessToken(String accessToken) {
+    public void updateAccessToken(String accessToken, String userid) {
         this.accessToken = prefix + accessToken;
+        this.userid = userid;
         SharedPreferencesOperations.saveOnPrefs(SharedPreferencesOperations.ACCESS_TOKEN, this.accessToken);
+        SharedPreferencesOperations.saveOnPrefs(SharedPreferencesOperations.USERID, this.userid);
     }
 
     public String getAccessToken() {
@@ -30,13 +32,21 @@ public class UserBusiness {
         return accessToken;
     }
 
-    public void removeAccessToken() {
-        SharedPreferencesOperations.removeFromPrefs(SharedPreferencesOperations.ACCESS_TOKEN);
-        accessToken = null;
+    public String getUserId() {
+        if (userid == null) {
+            userid = SharedPreferencesOperations.loadFromPrefs(SharedPreferencesOperations.USERID);
+        }
+        return userid;
     }
 
-    public boolean isLogged(){
-//        || getAccessToken().equals("Bearer anonymous")
+    public void removeAccessToken() {
+        SharedPreferencesOperations.removeFromPrefs(SharedPreferencesOperations.ACCESS_TOKEN);
+        SharedPreferencesOperations.removeFromPrefs(SharedPreferencesOperations.USERID);
+        accessToken = null;
+        userid = null;
+    }
+
+    public boolean isLogged() {
         if(getAccessToken() == null)
             return false;
         else

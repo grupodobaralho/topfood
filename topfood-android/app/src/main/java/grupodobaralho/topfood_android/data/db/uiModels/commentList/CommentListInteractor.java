@@ -36,7 +36,7 @@ public class CommentListInteractor implements ICommentListInteractor {
 
             @Override
             public void onFailure(Call<List<Comment>> call, Throwable t) {
-                Log.e("Comment List Failed", t.getLocalizedMessage(), t);
+                listener.onApiError();
             }
         });
     }
@@ -102,29 +102,24 @@ public class CommentListInteractor implements ICommentListInteractor {
     }
 
     @Override
-    public boolean deleteComment(String restaurantId, String productId, String commentId, String accessToken) {
-        Call<Comment> call = RetrofitInstance.retrofitCreate().deleteComment(restaurantId, productId, commentId
-                , accessToken);
+    public void deleteComment(String restaurantId, String productId, String commentId, String accessToken, final ICommentListPresenter.OnCommentListFinishedListener listener) {
+
+        Call<Comment> call = RetrofitInstance.retrofitCreate().deleteComment(restaurantId, productId, commentId, accessToken);
 
         call.enqueue(new Callback<Comment>() {
             @Override
             public void onResponse(Call<Comment> call, Response<Comment> response) {
-                if (response.body() != null) {
-                    comment = response.body();
-                } else {
-                    try {
-                        Log.e("Deleting a Comment", response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                if (response.code() != 200) {
+                    listener.onApiError();
+                    return;
                 }
+                listener.onSuccessDel();
             }
 
             @Override
             public void onFailure(Call<Comment> call, Throwable t) {
-                Log.e("Comment not Deleted", t.getLocalizedMessage(), t);
+                listener.onApiError();
             }
         });
-        return false;
     }
 }

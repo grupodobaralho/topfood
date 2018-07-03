@@ -4,5 +4,5 @@ import grupodobaralho.topfood_android.data.db.model.User;
 
 public interface IUserInteractor {
 
-    User getProfile(String token);
+    void getProfile(String token);
 }

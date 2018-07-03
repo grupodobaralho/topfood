@@ -15,6 +15,6 @@ public interface ICommentListInteractor {
 
     Comment updateComment(String restaurantId, String productId, String commentId, String accessToken, String text);
 
-    boolean deleteComment(String restaurantId, String productId, String commentId, String accessToken);
+    void deleteComment(final String restaurantId, final String productId, final String commentId, final String accessToken, final ICommentListPresenter.OnCommentListFinishedListener listener);
 
 }

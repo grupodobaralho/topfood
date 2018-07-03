@@ -55,7 +55,8 @@ public class SignUpInteractor implements ISignUpInteractor {
                         }
 
                         String token = response.body().getAccess_token();
-                        UserBusiness.getInstance().updateAccessToken(token);
+                        String userid = response.body().getId();
+                        UserBusiness.getInstance().updateAccessToken(token, userid);
                         listener.onSuccess();
                     }
 

@@ -15,28 +15,22 @@ public class UserInteractor implements IUserInteractor {
     private User user;
 
     @Override
-    public User getProfile(String token) {
+    public void getProfile(String token) {
         Call<User> call = RetrofitInstance.retrofitCreate().getProfile(token);
 
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if (response.body() != null) {
+                if (response.code() == 200) {
                     user = response.body();
-                } else {
-                    try {
-                        Log.e("User profile", response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
                 }
+
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Log.e("User profile failed", t.getLocalizedMessage(), t);
             }
         });
-        return user;
     }
 }

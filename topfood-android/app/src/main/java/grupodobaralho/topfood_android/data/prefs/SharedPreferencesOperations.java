@@ -3,14 +3,12 @@ package grupodobaralho.topfood_android.data.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-// local storage utilizado em apps Android. Baseado no projeto adocoes.
 public class SharedPreferencesOperations {
 
     private static final String PREFS_NAME = "SHARED_PREFS_TOPFOOD";
 
     public static final String ACCESS_TOKEN = "accessToken";
-
-//    public static final String USER_ID = "userId";
+    public static final String USERID = "username";
 
     public static void saveOnPrefs(String key, String value){
 

@@ -91,7 +91,7 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_logout, menu);
 
-        if(!presenter.hasUserLogged()) {
+        if(!presenter.isUserLogged()) {
             menu.findItem(R.id.action_logout).setTitle("Fazer Login");
         }
         return super.onCreateOptionsMenu(menu);
@@ -103,7 +103,7 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
 
         if (itemId == R.id.action_logout) {
 
-            if(!presenter.hasUserLogged()) {
+            if(!presenter.isUserLogged()) {
                 startActivity(new Intent(this, LoginView.class));
             } else {
                 presenter.makeLogout();

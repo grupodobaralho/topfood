@@ -109,7 +109,7 @@ public class ProductListView extends AppCompatActivity implements IProductListVi
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_logout, menu);
 
-        if(!presenter.hasUserLogged()) {
+        if(!presenter.isUserLogged()) {
             menu.findItem(R.id.action_logout).setTitle("Fazer Login");
         }
         return super.onCreateOptionsMenu(menu);
@@ -122,7 +122,7 @@ public class ProductListView extends AppCompatActivity implements IProductListVi
         switch (itemId) {
 
             case R.id.action_logout:
-                if (!presenter.hasUserLogged()) {
+                if (!presenter.isUserLogged()) {
                     startActivity(new Intent(this, LoginView.class));
                 } else {
                     presenter.makeLogout();

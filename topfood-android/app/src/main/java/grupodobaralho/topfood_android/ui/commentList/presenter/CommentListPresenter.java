@@ -76,7 +76,7 @@ public class CommentListPresenter implements ICommentListPresenter, ICommentList
     }
 
     @Override
-    public boolean hasUserLogged() {
+    public boolean isUserLogged() {
         return userBusiness.isLogged();
     }
 
@@ -87,8 +87,8 @@ public class CommentListPresenter implements ICommentListPresenter, ICommentList
     }
 
     @Override
-    public boolean wasTheUserLoggedWhoCommented(Comment comment) {
-        if(hasUserLogged() && comment.getAuthor().getId().equals(userBusiness.getUserId()))
+    public boolean isUserComment(Comment comment) {
+        if(isUserLogged() && comment.getAuthor().getId().equals(userBusiness.getUserId()))
             return true;
         else
             return false;

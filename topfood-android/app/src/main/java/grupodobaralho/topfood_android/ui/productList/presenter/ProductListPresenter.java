@@ -61,7 +61,7 @@ public class ProductListPresenter implements IProductListPresenter, IProductList
     }
 
     @Override
-    public boolean hasUserLogged() {
+    public boolean isUserLogged() {
         return userBusiness.isLogged();
     }
 

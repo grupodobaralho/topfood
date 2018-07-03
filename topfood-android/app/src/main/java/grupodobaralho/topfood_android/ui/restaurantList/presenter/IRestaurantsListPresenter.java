@@ -20,7 +20,7 @@ public interface IRestaurantsListPresenter {
 
     List<Restaurant> searchARestaurant(String name);
 
-    boolean hasUserLogged();
+    boolean isUserLogged();
 
     void makeLogout();
 

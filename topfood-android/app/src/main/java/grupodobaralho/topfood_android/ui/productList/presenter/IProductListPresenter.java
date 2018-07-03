@@ -21,7 +21,7 @@ public interface IProductListPresenter {
 
     List<Product> searchAProduct(String name);
 
-    boolean hasUserLogged();
+    boolean isUserLogged();
 
     void makeLogout();
 

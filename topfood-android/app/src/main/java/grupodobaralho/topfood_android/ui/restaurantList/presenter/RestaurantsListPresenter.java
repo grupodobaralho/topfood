@@ -62,7 +62,7 @@ public class RestaurantsListPresenter implements IRestaurantsListPresenter, IRes
     }
 
     @Override
-    public boolean hasUserLogged() {
+    public boolean isUserLogged() {
         return userBusiness.isLogged();
     }
 

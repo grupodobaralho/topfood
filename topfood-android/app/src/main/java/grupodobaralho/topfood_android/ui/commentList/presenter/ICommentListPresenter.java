@@ -23,7 +23,7 @@ public interface ICommentListPresenter {
 
     List<Comment> getComments();
 
-    boolean hasUserLogged();
+    boolean isUserLogged();
 
     void makeLogout();
 
@@ -31,6 +31,6 @@ public interface ICommentListPresenter {
 
     void hideProgressBar();
 
-    boolean wasTheUserLoggedWhoCommented(Comment comment);
+    boolean isUserComment(Comment comment);
 
 }

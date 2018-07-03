@@ -18,7 +18,6 @@ import grupodobaralho.topfood_android.data.db.model.Restaurant;
 import grupodobaralho.topfood_android.ui.commentList.presenter.CommentListPresenter;
 import grupodobaralho.topfood_android.ui.commentList.presenter.ICommentListPresenter;
 import grupodobaralho.topfood_android.ui.login.view.LoginView;
-import grupodobaralho.topfood_android.ui.productList.view.ProductListView;
 
 public class CommentListView extends AppCompatActivity implements ICommentListView {
 
@@ -88,7 +87,7 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_logout, menu);
 
-        if(!presenter.hasUserLogged()) {
+        if(!presenter.isUserLogged()) {
             menu.findItem(R.id.action_logout).setTitle("Fazer Login");
         }
         return super.onCreateOptionsMenu(menu);
@@ -101,7 +100,7 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
         switch (itemId) {
 
             case R.id.action_logout:
-                if (!presenter.hasUserLogged()) {
+                if (!presenter.isUserLogged()) {
                     startActivity(new Intent(this, LoginView.class));
                 } else {
                     presenter.makeLogout();

@@ -71,7 +71,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
             tvDate.setText(String.valueOf(comment.getCreatedAt()));
             tvComment.setText(comment.getText());
 
-            if(presenter.wasTheUserLoggedWhoCommented(comment)) {
+            if(presenter.isUserComment(comment)) {
                 btnDel.setVisibility(View.VISIBLE);
                 btnDel.setOnClickListener(new View.OnClickListener() {
                     @Override

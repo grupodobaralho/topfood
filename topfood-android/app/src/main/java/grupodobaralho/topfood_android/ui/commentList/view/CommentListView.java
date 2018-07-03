@@ -64,8 +64,13 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
         rvComment.setLayoutManager(layoutManager);
         rvComment.setVisibility(View.VISIBLE);
 
-        adapter = new CommentListAdapter(presenter, presenter.getComments());
+        adapter = new CommentListAdapter(this, presenter, presenter.getComments());
         rvComment.setAdapter(adapter);
+    }
+
+    @Override
+    public void updateList() {
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -104,7 +109,7 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
                     startActivity(new Intent(this, LoginView.class));
                 } else {
                     presenter.makeLogout();
-                    startActivity(new Intent(this, CommentListView.class));
+                    startActivity(new Intent(this, CommentListView.class).putExtra(EXTRA_RESTAURANT, restaurant).putExtra(EXTRA_PRODUCT, product));
                     finish();
                 }
                 break;

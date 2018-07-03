@@ -126,7 +126,7 @@ public class ProductListView extends AppCompatActivity implements IProductListVi
                     startActivity(new Intent(this, LoginView.class));
                 } else {
                     presenter.makeLogout();
-                    startActivity(new Intent(this, ProductListView.class));
+                    startActivity(new Intent(this, ProductListView.class).putExtra(EXTRA_RESTAURANT, restaurant));
                     finish();
                 }
                 break;

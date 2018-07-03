@@ -60,9 +60,15 @@ public class CommentListPresenter implements ICommentListPresenter, ICommentList
     }
 
     @Override
+    public void onDelError() {
+        onApiError();
+        interactor.listCommentsProduct(restaurantId, productId, this);
+    }
+
+    @Override
     public void onSuccessDel() {
         view.showToast("Mensagem removida com sucesso.");
-        interactor.listCommentsProduct(restaurantId, productId, this);
+        view.updateList();
     }
 
     @Override

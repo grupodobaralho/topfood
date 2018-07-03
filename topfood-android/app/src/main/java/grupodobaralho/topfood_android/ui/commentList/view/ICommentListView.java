@@ -6,6 +6,8 @@ public interface ICommentListView {
 
     void showComments();
 
+    void updateList();
+
     void showProgressBar();
 
     void hideProgressBar();

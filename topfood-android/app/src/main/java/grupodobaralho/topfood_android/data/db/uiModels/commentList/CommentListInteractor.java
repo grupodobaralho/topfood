@@ -110,7 +110,7 @@ public class CommentListInteractor implements ICommentListInteractor {
             @Override
             public void onResponse(Call<Comment> call, Response<Comment> response) {
                 if (response.code() != 200) {
-                    listener.onApiError();
+                    listener.onDelError();
                     return;
                 }
                 listener.onSuccessDel();
@@ -118,7 +118,7 @@ public class CommentListInteractor implements ICommentListInteractor {
 
             @Override
             public void onFailure(Call<Comment> call, Throwable t) {
-                listener.onApiError();
+                listener.onDelError();
             }
         });
     }

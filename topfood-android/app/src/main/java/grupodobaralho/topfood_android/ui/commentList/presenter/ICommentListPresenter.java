@@ -10,6 +10,7 @@ public interface ICommentListPresenter {
     interface OnCommentListFinishedListener {
         void onApiError();
         void onSuccess();
+        void onDelError();
         void onSuccessDel();
     }
 

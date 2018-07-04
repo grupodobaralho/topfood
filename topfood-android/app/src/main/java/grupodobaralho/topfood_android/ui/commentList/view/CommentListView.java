@@ -20,6 +20,7 @@ import grupodobaralho.topfood_android.ui.comment.view.CommentView;
 import grupodobaralho.topfood_android.ui.commentList.presenter.CommentListPresenter;
 import grupodobaralho.topfood_android.ui.commentList.presenter.ICommentListPresenter;
 import grupodobaralho.topfood_android.ui.login.view.LoginView;
+import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
 
 public class CommentListView extends AppCompatActivity implements ICommentListView, View.OnClickListener {
 
@@ -115,7 +116,9 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
 
             case R.id.action_logout:
                 if (!presenter.isUserLogged()) {
-                    startActivity(new Intent(this, LoginView.class));
+                    Intent intent = new Intent(this, CommentListView.class);
+                    intent.putExtra(EXTRA_RESTAURANT, restaurant).putExtra(EXTRA_PRODUCT, product);
+                    startActivity(new Intent(this, LoginView.class).putExtra(LoginView.EXTRA_INTENT, intent));
                 } else {
                     presenter.makeLogout();
                     startActivity(new Intent(this, CommentListView.class).putExtra(EXTRA_RESTAURANT, restaurant).putExtra(EXTRA_PRODUCT, product));

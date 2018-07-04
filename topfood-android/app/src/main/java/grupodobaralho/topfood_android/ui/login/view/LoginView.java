@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import grupodobaralho.topfood_android.R;
+import grupodobaralho.topfood_android.data.db.model.Restaurant;
 import grupodobaralho.topfood_android.ui.login.presenter.ILoginPresenter;
 import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenter;
 import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
@@ -22,10 +23,13 @@ import grupodobaralho.topfood_android.ui.signUp.view.SignUpView;
  */
 public class LoginView extends AppCompatActivity implements ILoginView, View.OnClickListener {
 
+    public static final String EXTRA_INTENT = "intent";
+
     private ProgressDialog mProgress;
     private EditText email;
     private EditText password;
     private ILoginPresenter presenter;
+    private Intent intent;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,10 @@ public class LoginView extends AppCompatActivity implements ILoginView, View.OnC
 
         if(getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intentFromList = getIntent();
+        if (intentFromList != null)
+            intent = intentFromList.getParcelableExtra(EXTRA_INTENT);
 
         email = findViewById(R.id.input_email);
         password = findViewById(R.id.input_password);
@@ -82,7 +90,10 @@ public class LoginView extends AppCompatActivity implements ILoginView, View.OnC
 
     @Override
     public void navigateToHome() {
-        startActivity(new Intent(this, RestaurantsListView.class));
+        if (intent != null)
+            startActivity(intent);
+        else
+            startActivity(new Intent(this, RestaurantsListView.class));
         finish();
     }
 

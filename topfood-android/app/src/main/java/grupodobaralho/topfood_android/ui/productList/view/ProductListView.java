@@ -20,6 +20,7 @@ import grupodobaralho.topfood_android.ui.commentList.view.CommentListView;
 import grupodobaralho.topfood_android.ui.login.view.LoginView;
 import grupodobaralho.topfood_android.ui.productList.presenter.IProductListPresenter;
 import grupodobaralho.topfood_android.ui.productList.presenter.ProductListPresenter;
+import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
 
 public class ProductListView extends AppCompatActivity implements IProductListView, SearchView.OnQueryTextListener {
 
@@ -123,7 +124,9 @@ public class ProductListView extends AppCompatActivity implements IProductListVi
 
             case R.id.action_logout:
                 if (!presenter.isUserLogged()) {
-                    startActivity(new Intent(this, LoginView.class));
+                    Intent intent = new Intent(this, ProductListView.class);
+                    intent.putExtra(EXTRA_RESTAURANT, restaurant);
+                    startActivity(new Intent(this, LoginView.class).putExtra(LoginView.EXTRA_INTENT, intent));
                 } else {
                     presenter.makeLogout();
                     startActivity(new Intent(this, ProductListView.class).putExtra(EXTRA_RESTAURANT, restaurant));

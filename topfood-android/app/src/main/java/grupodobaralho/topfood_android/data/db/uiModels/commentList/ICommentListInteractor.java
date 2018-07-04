@@ -12,7 +12,7 @@ public interface ICommentListInteractor {
 
     List<Comment> getComments();
 
-    void createComment(String restaurantId, String productId, String accessToken, String text, final ICommentPresenter.OnCommentFinishedListener listener);
+    void createComment(String restaurantId, String productId, String accessToken, String text, String img, final ICommentPresenter.OnCommentFinishedListener listener);
 
     Comment updateComment(String restaurantId, String productId, String commentId, String accessToken, String text);
 

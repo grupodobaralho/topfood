@@ -21,7 +21,7 @@ public class CommentPresenter implements ICommentPresenter, ICommentPresenter.On
         if (view != null)
             view.showProgress();
 
-        interactor.createComment(restaurantId, productId, userBusiness.getAccessToken(), text, this);
+        interactor.createComment(restaurantId, productId, userBusiness.getAccessToken(), text, image, this);
     }
 
     @Override

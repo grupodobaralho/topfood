@@ -23,4 +23,6 @@
     <string name="bem_vindo">Bem Vindo...</string>
     <string name="selecione_um_restaurante">Selecione um restaurante.</string>
     <string name="logout">Logout</string>
+    <string name="o_que_voc_acha_deste_produto">O que você acha deste produto?</string>
+    <string name="text_comment_error">Campo de texto não pode ficar vazio</string>
 </resources>

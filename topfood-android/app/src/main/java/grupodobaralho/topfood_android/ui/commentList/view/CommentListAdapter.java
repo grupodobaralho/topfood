@@ -1,6 +1,6 @@
 package grupodobaralho.topfood_android.ui.commentList.view;
 
-import android.content.Context;
+import com.bumptech.glide.Glide;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -93,9 +93,11 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
                 });
             }
-//            imgComment.setImageBitmap();
-//            myProduct = comment
-//            imgComment.setOnClickListener(this);
+
+            if(comment.getImage() != null && comment.getImage() != "") {
+                imgComment.setVisibility(View.VISIBLE);
+                Glide.with(imgComment.getContext()).load(comment.getImage()).into(imgComment);
+            }
         }
     }
 }

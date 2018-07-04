@@ -5,6 +5,7 @@ import java.util.List;
 import grupodobaralho.topfood_android.data.db.model.AuthRequest;
 import grupodobaralho.topfood_android.data.db.model.AuthResponse;
 import grupodobaralho.topfood_android.data.db.model.Comment;
+import grupodobaralho.topfood_android.data.db.model.CommentRequest;
 import grupodobaralho.topfood_android.data.db.model.SignUpResponse;
 import grupodobaralho.topfood_android.data.db.model.Text;
 import grupodobaralho.topfood_android.data.db.model.User;
@@ -51,7 +52,7 @@ public interface API_EndPoint {
     @POST("restaurants/{restaurantId}/products/{productId}/comments")
     Call<Comment> createComment(@Path("restaurantId") String restaurantId, @Path("productId") String productId,
                                 @Header("Authorization") String accessToken,
-                                @Body Text text);
+                                @Body CommentRequest commentRequest);
 
     @Headers({"Content-Type: application/json"})
     @PUT("restaurants/{restaurantId}/products/{productId}/comments/{commentId}")

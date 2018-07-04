@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import grupodobaralho.topfood_android.data.db.model.Comment;
+import grupodobaralho.topfood_android.data.db.model.CommentRequest;
 import grupodobaralho.topfood_android.data.db.model.Text;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
 import grupodobaralho.topfood_android.ui.comment.presenter.ICommentPresenter;
@@ -48,9 +49,15 @@ public class CommentListInteractor implements ICommentListInteractor {
     }
 
     @Override
-    public void createComment(String restaurantId, String productId, String accessToken, String text, final ICommentPresenter.OnCommentFinishedListener listener) {
-        Text oText = new Text(text);
-        Call<Comment> call = RetrofitInstance.retrofitCreate().createComment(restaurantId, productId,  accessToken, oText);
+    public void createComment(String restaurantId, String productId, String accessToken, String text, String img, final ICommentPresenter.OnCommentFinishedListener listener) {
+
+        if(text == null || text.isEmpty()) {
+            listener.onEditTextError();
+            return;
+        }
+
+        CommentRequest commentRequest = new CommentRequest(text, img);
+        Call<Comment> call = RetrofitInstance.retrofitCreate().createComment(restaurantId, productId,  accessToken, commentRequest);
 
         call.enqueue(new Callback<Comment>() {
             @Override

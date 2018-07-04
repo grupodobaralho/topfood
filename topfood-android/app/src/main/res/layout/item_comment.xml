@@ -68,6 +68,7 @@ Com certeza irei indicar a amigos." />
             android:layout_height="120dp"
             android:layout_marginTop="8dp"
             android:layout_gravity="center"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:visibility="gone"/>
 
     </LinearLayout>

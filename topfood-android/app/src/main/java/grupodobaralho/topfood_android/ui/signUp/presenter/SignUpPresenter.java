@@ -73,14 +73,15 @@ public class SignUpPresenter implements ISignUpPresenter, ISignUpPresenter.OnCad
 
     @Override
     public void onSuccessSignUp() {
-        if (cadastroView != null) {
+        if (cadastroView != null)
             cadastroView.onSuccessSignUp("Usuario cadastrado com sucesso.");
-        }
+
     }
 
     @Override
     public void onSuccess() {
         if (cadastroView != null) {
+            cadastroView.hideProgress();
             cadastroView.navigateToHome();
         }
     }

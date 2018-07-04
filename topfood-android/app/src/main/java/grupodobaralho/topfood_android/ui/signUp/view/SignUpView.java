@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import grupodobaralho.topfood_android.R;
 import grupodobaralho.topfood_android.data.prefs.TopfoodApplication;
+import grupodobaralho.topfood_android.ui.login.view.LoginView;
 import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
 import grupodobaralho.topfood_android.ui.signUp.presenter.SignUpPresenter;
 import grupodobaralho.topfood_android.ui.signUp.presenter.ISignUpPresenter;
@@ -24,6 +25,7 @@ public class SignUpView extends AppCompatActivity implements ISignUpView, View.O
     private EditText password;
     private EditText confirmPassword;
     private ISignUpPresenter presenter;
+    private Intent intent;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,10 @@ public class SignUpView extends AppCompatActivity implements ISignUpView, View.O
 
         if(getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intentFromList = getIntent();
+        if (intentFromList != null)
+            intent = intentFromList.getParcelableExtra(LoginView.EXTRA_INTENT);
 
         nomeCompleto = findViewById(R.id.input_cadastro_name);
         username = findViewById(R.id.input_cadastro_email);
@@ -95,7 +101,10 @@ public class SignUpView extends AppCompatActivity implements ISignUpView, View.O
 
     @Override
     public void navigateToHome() {
-        startActivity(new Intent(this, RestaurantsListView.class));
+        if (intent != null)
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        else
+            startActivity(new Intent(this, RestaurantsListView.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
     }
 

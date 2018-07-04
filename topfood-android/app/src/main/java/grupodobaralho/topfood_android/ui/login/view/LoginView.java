@@ -91,9 +91,9 @@ public class LoginView extends AppCompatActivity implements ILoginView, View.OnC
     @Override
     public void navigateToHome() {
         if (intent != null)
-            startActivity(intent);
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         else
-            startActivity(new Intent(this, RestaurantsListView.class));
+            startActivity(new Intent(this, RestaurantsListView.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
     }
 
@@ -104,8 +104,10 @@ public class LoginView extends AppCompatActivity implements ILoginView, View.OnC
                 presenter.validateCredentials(email.getText().toString(), password.getText().toString());
                 break;
             case R.id.btn_signup:
-                startActivity(new Intent(this, SignUpView.class));
-                finish();
+                if(intent != null)
+                    startActivity(new Intent(this, SignUpView.class).putExtra(EXTRA_INTENT, intent));
+                else
+                    startActivity(new Intent(this, SignUpView.class));
                 break;
             default:
         }

@@ -143,9 +143,7 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
 
             case R.id.action_logout:
                 if (!presenter.isUserLogged()) {
-                    Intent intent = new Intent(this, CommentListView.class);
-                    intent.putExtra(EXTRA_RESTAURANT, restaurant).putExtra(EXTRA_PRODUCT, product);
-                    startActivity(new Intent(this, LoginView.class).putExtra(LoginView.EXTRA_INTENT, intent));
+                    startActivity(new Intent(this, LoginView.class));
                 } else {
                     presenter.makeLogout();
                     recreate();

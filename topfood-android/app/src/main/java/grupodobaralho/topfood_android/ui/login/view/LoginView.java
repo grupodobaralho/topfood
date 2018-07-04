@@ -89,7 +89,10 @@ public class LoginView extends AppCompatActivity implements ILoginView, View.OnC
 
     @Override
     public void navigateToHome() {
-        this.onBackPressed();
+        if (intent != null)
+            startActivity(intent);
+        else
+            onBackPressed();
         finish();
     }
 

@@ -130,9 +130,7 @@ public class ProductListView extends AppCompatActivity implements IProductListVi
 
             case R.id.action_logout:
                 if (!presenter.isUserLogged()) {
-                    Intent intent = new Intent(this, ProductListView.class);
-                    intent.putExtra(EXTRA_RESTAURANT, restaurant);
-                    startActivity(new Intent(this, LoginView.class).putExtra(LoginView.EXTRA_INTENT, intent));
+                    startActivity(new Intent(this, LoginView.class));
                 } else {
                     presenter.makeLogout();
                     recreate();

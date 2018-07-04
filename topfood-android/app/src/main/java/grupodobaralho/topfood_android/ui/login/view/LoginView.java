@@ -89,10 +89,7 @@ public class LoginView extends AppCompatActivity implements ILoginView, View.OnC
 
     @Override
     public void navigateToHome() {
-        if (intent != null)
-            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-        else
-            startActivity(new Intent(this, RestaurantsListView.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+        this.onBackPressed();
         finish();
     }
 

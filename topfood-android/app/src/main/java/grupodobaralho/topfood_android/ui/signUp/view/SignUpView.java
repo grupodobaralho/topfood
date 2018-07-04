@@ -101,10 +101,7 @@ public class SignUpView extends AppCompatActivity implements ISignUpView, View.O
 
     @Override
     public void navigateToHome() {
-        if (intent != null)
-            startActivity(intent);
-        else
-            startActivity(new Intent(this, RestaurantsListView.class));
+        onBackPressed();
         finish();
 
     }

@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import grupodobaralho.topfood_android.R;
-import grupodobaralho.topfood_android.data.db.model.Restaurant;
 import grupodobaralho.topfood_android.ui.login.presenter.ILoginPresenter;
 import grupodobaralho.topfood_android.ui.login.presenter.LoginPresenter;
 import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
@@ -91,9 +90,9 @@ public class LoginView extends AppCompatActivity implements ILoginView, View.OnC
     @Override
     public void navigateToHome() {
         if (intent != null)
-            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
         else
-            startActivity(new Intent(this, RestaurantsListView.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, RestaurantsListView.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
         finish();
     }
 

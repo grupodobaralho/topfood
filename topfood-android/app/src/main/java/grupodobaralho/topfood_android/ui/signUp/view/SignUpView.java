@@ -102,10 +102,11 @@ public class SignUpView extends AppCompatActivity implements ISignUpView, View.O
     @Override
     public void navigateToHome() {
         if (intent != null)
-            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
         else
-            startActivity(new Intent(this, RestaurantsListView.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, RestaurantsListView.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
         finish();
+
     }
 
     @Override

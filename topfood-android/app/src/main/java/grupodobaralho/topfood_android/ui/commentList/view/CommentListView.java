@@ -1,15 +1,16 @@
 package grupodobaralho.topfood_android.ui.commentList.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,6 @@ import grupodobaralho.topfood_android.ui.comment.view.CommentView;
 import grupodobaralho.topfood_android.ui.commentList.presenter.CommentListPresenter;
 import grupodobaralho.topfood_android.ui.commentList.presenter.ICommentListPresenter;
 import grupodobaralho.topfood_android.ui.login.view.LoginView;
-import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
 
 public class CommentListView extends AppCompatActivity implements ICommentListView, View.OnClickListener {
 
@@ -94,8 +94,28 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
     }
 
     @Override
-    public void onClick(View view) {
-        startActivity(new Intent(this, CommentView.class).putExtra(EXTRA_RESTAURANT, restaurant).putExtra(EXTRA_PRODUCT, product));
+    public void onClick(final View view) {
+        if(presenter.isUserLogged()) {
+            startActivity(new Intent(this, CommentView.class).putExtra(EXTRA_RESTAURANT, restaurant).putExtra(EXTRA_PRODUCT, product));
+        } else {
+            new Intent(this, LoginView.class);
+            new AlertDialog.Builder(this).setTitle("Aviso")
+                    .setMessage("Para registrar um comentário é preciso logar-se. Deseja prossesguir?")
+                    .setPositiveButton("sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            goToLoginView();
+                        }
+                    })
+                    .setNegativeButton("Não", null)
+                    .show();
+        }
+    }
+
+    public void goToLoginView() {
+        Intent intent = new Intent(this, CommentView.class);
+        intent.putExtra(EXTRA_RESTAURANT, restaurant).putExtra(EXTRA_PRODUCT, product);
+        startActivity(new Intent(this, LoginView.class).putExtra(LoginView.EXTRA_INTENT, intent));
     }
 
     @Override

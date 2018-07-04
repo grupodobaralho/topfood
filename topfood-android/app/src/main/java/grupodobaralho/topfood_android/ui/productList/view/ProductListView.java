@@ -20,7 +20,6 @@ import grupodobaralho.topfood_android.ui.commentList.view.CommentListView;
 import grupodobaralho.topfood_android.ui.login.view.LoginView;
 import grupodobaralho.topfood_android.ui.productList.presenter.IProductListPresenter;
 import grupodobaralho.topfood_android.ui.productList.presenter.ProductListPresenter;
-import grupodobaralho.topfood_android.ui.restaurantList.view.RestaurantsListView;
 
 public class ProductListView extends AppCompatActivity implements IProductListView, SearchView.OnQueryTextListener {
 

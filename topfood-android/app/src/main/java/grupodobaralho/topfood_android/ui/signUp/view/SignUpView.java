@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,7 +21,6 @@ import grupodobaralho.topfood_android.ui.signUp.presenter.ISignUpPresenter;
 public class SignUpView extends AppCompatActivity implements ISignUpView, View.OnClickListener {
 
     private ProgressDialog mProgress;
-    private EditText nomeCompleto;
     private EditText username;
     private EditText password;
     private EditText confirmPassword;
@@ -38,11 +38,11 @@ public class SignUpView extends AppCompatActivity implements ISignUpView, View.O
         if (intentFromList != null)
             intent = intentFromList.getParcelableExtra(LoginView.EXTRA_INTENT);
 
-        nomeCompleto = findViewById(R.id.input_cadastro_name);
         username = findViewById(R.id.input_cadastro_email);
         password = findViewById(R.id.input_cadastro_password);
         confirmPassword = findViewById(R.id.input_cadastro_confirm_password);
-        findViewById(R.id.btn_cadastro_signup).setOnClickListener(this);
+        findViewById(R.id.btn_signup_complete).setOnClickListener(this);
+        findViewById(R.id.btn_signup_to_login).setOnClickListener(this);
 
         mProgress = new ProgressDialog(this);
         mProgress.setTitle("Processando...");
@@ -102,16 +102,28 @@ public class SignUpView extends AppCompatActivity implements ISignUpView, View.O
     @Override
     public void navigateToHome() {
         if (intent != null)
-            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            startActivity(intent);
         else
-            startActivity(new Intent(this, RestaurantsListView.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            startActivity(new Intent(this, RestaurantsListView.class));
         finish();
 
     }
 
     @Override
     public void onClick(View view) {
-        presenter.validateSignUp(username.getText().toString(), password.getText().toString(), confirmPassword.getText().toString());
+        Button btn = (Button) view;
+        switch (btn.getId()) {
+            case R.id.btn_signup_complete:
+                presenter.validateSignUp(username.getText().toString(), password.getText().toString(), confirmPassword.getText().toString());
+                break;
+            case R.id.btn_signup_to_login:
+                if(intent != null)
+                    startActivity(new Intent(this, LoginView.class).putExtra(LoginView.EXTRA_INTENT, intent));
+                else
+                    startActivity(new Intent(this, LoginView.class));
+                finish();
+                break;
+        }
     }
 
     @Override

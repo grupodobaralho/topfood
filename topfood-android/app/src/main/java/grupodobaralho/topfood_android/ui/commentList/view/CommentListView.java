@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,6 +59,12 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
         presenter.listAllComments();
 
         findViewById(R.id.comment_floatingActionButton).setOnClickListener(this);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        recreate();
     }
 
     @Override
@@ -141,8 +148,7 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
                     startActivity(new Intent(this, LoginView.class).putExtra(LoginView.EXTRA_INTENT, intent));
                 } else {
                     presenter.makeLogout();
-                    startActivity(new Intent(this, CommentListView.class).putExtra(EXTRA_RESTAURANT, restaurant).putExtra(EXTRA_PRODUCT, product));
-                    finish();
+                    recreate();
                 }
                 break;
 

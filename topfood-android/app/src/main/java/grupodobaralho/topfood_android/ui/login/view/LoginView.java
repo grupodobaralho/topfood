@@ -107,8 +107,8 @@ public class LoginView extends AppCompatActivity implements ILoginView, View.OnC
                     startActivity(new Intent(this, SignUpView.class).putExtra(EXTRA_INTENT, intent));
                 else
                     startActivity(new Intent(this, SignUpView.class));
+                finish();
                 break;
-            default:
         }
     }
 

@@ -22,21 +22,6 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25dp" />
 
-        <!-- Nome completo Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" >
-
-            <EditText android:id="@+id/input_cadastro_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="Nome completo" />
-
-        </android.support.design.widget.TextInputLayout>
-
         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -83,12 +68,24 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_cadastro_signup"
+            android:id="@+id/btn_signup_complete"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Cadastrar"
             android:gravity="center"
             android:textSize="16dip" />
+
+        <Button
+            android:id="@+id/btn_signup_to_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Já possuo uma conta"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"/>
+
 
         <ProgressBar
             android:id="@+id/progress_cadastro"

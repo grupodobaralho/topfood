@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,6 +54,12 @@ public class ProductListView extends AppCompatActivity implements IProductListVi
             presenter = new ProductListPresenter();
         presenter.setView(this);
         presenter.listAllProducts(restaurant.getId());
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        recreate();
     }
 
     @Override
@@ -128,8 +135,7 @@ public class ProductListView extends AppCompatActivity implements IProductListVi
                     startActivity(new Intent(this, LoginView.class).putExtra(LoginView.EXTRA_INTENT, intent));
                 } else {
                     presenter.makeLogout();
-                    startActivity(new Intent(this, ProductListView.class).putExtra(EXTRA_RESTAURANT, restaurant));
-                    finish();
+                    recreate();
                 }
                 break;
 

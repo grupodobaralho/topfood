@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +37,12 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
             presenter = new RestaurantsListPresenter();
         presenter.setView(this);
         presenter.listAllRestaurants();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        recreate();
     }
 
     @Override
@@ -87,13 +94,17 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
         return false;
     }
 
+    public void updateLogoutButton(MenuItem menuItem) {
+        if(!presenter.isUserLogged()) {
+            menuItem.setTitle("Fazer Login");
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_logout, menu);
 
-        if(!presenter.isUserLogged()) {
-            menu.findItem(R.id.action_logout).setTitle("Fazer Login");
-        }
+        updateLogoutButton(menu.findItem(R.id.action_logout));
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -107,8 +118,7 @@ public class RestaurantsListView extends AppCompatActivity implements IRestauran
                 startActivity(new Intent(this, LoginView.class));
             } else {
                 presenter.makeLogout();
-                startActivity(new Intent(this, RestaurantsListView.class));
-                finish();
+                recreate();
             }
         }
 

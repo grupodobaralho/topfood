@@ -9,17 +9,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import grupodobaralho.topfood_android.R;
 import grupodobaralho.topfood_android.data.db.model.Product;
 import grupodobaralho.topfood_android.data.db.model.Restaurant;
+import grupodobaralho.topfood_android.ui.comment.view.CommentView;
 import grupodobaralho.topfood_android.ui.commentList.presenter.CommentListPresenter;
 import grupodobaralho.topfood_android.ui.commentList.presenter.ICommentListPresenter;
 import grupodobaralho.topfood_android.ui.login.view.LoginView;
 
-public class CommentListView extends AppCompatActivity implements ICommentListView {
+public class CommentListView extends AppCompatActivity implements ICommentListView, View.OnClickListener {
 
     public static final String EXTRA_RESTAURANT = "restaurant";
     public static final String EXTRA_PRODUCT = "product";
@@ -53,6 +55,8 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
         presenter.setView(this);
         presenter.setIds(restaurant.getId(), product.getId());
         presenter.listAllComments();
+
+        findViewById(R.id.comment_floatingActionButton).setOnClickListener(this);
     }
 
     @Override
@@ -89,6 +93,11 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
     }
 
     @Override
+    public void onClick(View view) {
+        startActivity(new Intent(this, CommentView.class).putExtra(EXTRA_RESTAURANT, restaurant).putExtra(EXTRA_PRODUCT, product));
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_logout, menu);
 
@@ -122,4 +131,5 @@ public class CommentListView extends AppCompatActivity implements ICommentListVi
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import grupodobaralho.topfood_android.data.db.model.Comment;
 import grupodobaralho.topfood_android.data.db.model.Text;
 import grupodobaralho.topfood_android.data.network.RetrofitInstance;
+import grupodobaralho.topfood_android.ui.comment.presenter.ICommentPresenter;
 import grupodobaralho.topfood_android.ui.commentList.presenter.ICommentListPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,30 +48,25 @@ public class CommentListInteractor implements ICommentListInteractor {
     }
 
     @Override
-    public Comment createComment(String restaurantId, String productId, String accessToken, String text) {
+    public void createComment(String restaurantId, String productId, String accessToken, String text, final ICommentPresenter.OnCommentFinishedListener listener) {
         Text oText = new Text(text);
         Call<Comment> call = RetrofitInstance.retrofitCreate().createComment(restaurantId, productId,  accessToken, oText);
 
         call.enqueue(new Callback<Comment>() {
             @Override
             public void onResponse(Call<Comment> call, Response<Comment> response) {
-                if (response.body() != null) {
-                    comment = response.body();
-                } else {
-                    try {
-                        Log.e("New Comment", response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                if (response.code() != 200) {
+                    listener.onApiError();
+                    return;
                 }
+                listener.onSuccess();
             }
 
             @Override
             public void onFailure(Call<Comment> call, Throwable t) {
-                Log.e("New Comment Failed", t.getLocalizedMessage(), t);
+                listener.onApiError();
             }
         });
-        return comment;
     }
 
     @Override
